@@ -64,9 +64,9 @@ export const ProviderBatchConfigs = {
     [Providers.MICROSOFT_EDGE_AUTH]: {
         defaultBatchSize: 4,
         maxBatchSize: 8,
-        delimiter: '\n||SUBTITLE||\n',
-        supportsBatch: false,
-        batchMethod: 'simulated',
+        delimiter: '|SUBTITLE_BREAK|',
+        supportsBatch: true,
+        batchMethod: 'delimiter',
         delayConfigKey: 'microsoftDelay',
     },
 };

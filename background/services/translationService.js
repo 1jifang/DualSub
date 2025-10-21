@@ -11,7 +11,10 @@
 // @ts-check
 
 import { translate as googleTranslate } from '../../translation_providers/googleTranslate.js';
-import { translate as microsoftTranslateEdgeAuth } from '../../translation_providers/microsoftTranslateEdgeAuth.js';
+import {
+    translate as microsoftTranslateEdgeAuth,
+    translateBatch as microsoftTranslateEdgeAuthBatch,
+} from '../../translation_providers/microsoftTranslateEdgeAuth.js';
 import { translate as deeplTranslate } from '../../translation_providers/deeplTranslate.js';
 import { translate as deeplTranslateFree } from '../../translation_providers/deeplTranslateFree.js';
 import {
@@ -68,7 +71,8 @@ class TranslationService {
             [Providers.MICROSOFT_EDGE_AUTH]: {
                 name: ProviderNames[Providers.MICROSOFT_EDGE_AUTH],
                 translate: microsoftTranslateEdgeAuth,
-                supportsBatch: false,
+                translateBatch: microsoftTranslateEdgeAuthBatch,
+                supportsBatch: true,
                 rateLimit: {
                     type: 'characters_sliding_window',
                     characters: 33300,

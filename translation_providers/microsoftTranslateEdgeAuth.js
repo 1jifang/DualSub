@@ -265,3 +265,118 @@ export async function translate(text, sourceLang, targetLang) {
         throw error;
     }
 }
+
+/**
+ * Translates multiple texts using the Microsoft Translator API in a single request.
+ * Accepts an array of strings and returns an array of translated strings
+ * preserving the original order.
+ *
+ * @param {string[]} texts Array of texts to translate.
+ * @param {string} sourceLang The source language code (e.g., 'auto', 'en').
+ * @param {string} targetLang The target language code (e.g., 'es', 'zh-CN').
+ * @param {string} [delimiter] Optional delimiter (ignored for Microsoft batch).
+ * @returns {Promise<string[]>} Translated texts in order.
+ */
+export async function translateBatch(
+    texts,
+    sourceLang,
+    targetLang,
+    delimiter = '|SUBTITLE_BREAK|'
+) {
+    logger.info('Batch translation request initiated', {
+        targetLang,
+        textCount: Array.isArray(texts) ? texts.length : 0,
+    });
+
+    if (!Array.isArray(texts) || texts.length === 0) {
+        return [];
+    }
+
+    // Normalize inputs to strings and keep placeholders for empty inputs
+    const normalized = texts.map((t) => (typeof t === 'string' ? t : ''));
+
+    const actualSourceLang =
+        sourceLang && typeof sourceLang === 'string' && sourceLang.toLowerCase() === 'auto'
+            ? undefined
+            : sourceLang;
+
+    try {
+        const authToken = await ensureAuthentication();
+
+        // Microsoft Translator accepts an array of objects: [{ Text: '...' }, ...]
+        const requestBody = normalized.map((t) => ({ Text: t }));
+
+        // Build query string
+        const queryParts = [
+            `api-version=3.0`,
+            `to=${encodeURIComponent(targetLang)}`,
+        ];
+        if (actualSourceLang) {
+            queryParts.push(`from=${encodeURIComponent(actualSourceLang)}`);
+        }
+        const queryString = queryParts.join('&');
+
+        const response = await fetch(`${API_TRANSLATE_COGNITIVE}?${queryString}`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + authToken,
+                'Content-Type': 'application/json',
+                'User-Agent': DEFAULT_USER_AGENT,
+            },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+            let errorDetails = 'No details available.';
+            try {
+                const errorJson = await response.json();
+                errorDetails = JSON.stringify(errorJson.error || errorJson);
+            } catch (e) {
+                errorDetails = await response.text();
+            }
+            logger.error('Microsoft Translate API HTTP error (batch)', null, {
+                status: response.status,
+                statusText: response.statusText,
+                errorDetails: errorDetails.substring(0, 200),
+            });
+            throw new Error(
+                `Batch Translation API HTTP error ${response.status}. Details: ${errorDetails.substring(0, 200)}`
+            );
+        }
+
+        const result = await response.json();
+
+        if (!Array.isArray(result) || result.length !== normalized.length) {
+            logger.warn('Batch translation count mismatch or invalid structure', {
+                expected: normalized.length,
+                received: Array.isArray(result) ? result.length : -1,
+            });
+        }
+
+        const translations = (Array.isArray(result) ? result : []).map((item, idx) => {
+            try {
+                const text = item?.translations?.[0]?.text;
+                return typeof text === 'string' ? text : '';
+            } catch (_) {
+                return '';
+            }
+        });
+
+        logger.info('Batch translation completed successfully', {
+            translatedCount: translations.length,
+        });
+
+        // Ensure output length matches input length
+        while (translations.length < normalized.length) translations.push('');
+        if (translations.length > normalized.length) translations.splice(normalized.length);
+
+        return translations;
+    } catch (error) {
+        logger.error('Batch API request/processing error occurred', error, {
+            sourceLang: actualSourceLang,
+            targetLang,
+            textCount: Array.isArray(texts) ? texts.length : 0,
+        });
+        throw error;
+    }
+}

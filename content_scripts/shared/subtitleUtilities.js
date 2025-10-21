@@ -346,6 +346,8 @@ export let translatedSubtitleElement = null;
 export let subtitlesActive = true;
 export let subtitleQueue = [];
 export let processingQueue = false;
+export let reprocessRequested = false;
+export let lastQueueTriggerTs = 0;
 
 // Guard against transient blanks during style changes and platform ID timing
 let lastStyleApplicationTs = 0;
@@ -2202,6 +2204,16 @@ export async function processSubtitleQueue(
 
     const currentTime = timeSource + config.subtitleTimeOffset;
 
+    // If user scrubbed to an earlier time, force immediate reprocessing by clearing any prior batching gate
+    if (
+        typeof lastProgressBarTime === 'number' &&
+        lastProgressBarTime >= 0 &&
+        currentTime < lastProgressBarTime - 0.25
+    ) {
+        reprocessRequested = true;
+        lastQueueTriggerTs = Date.now();
+    }
+
     const cuesToProcess = subtitleQueue
         .filter(
             (cue) =>
@@ -2214,7 +2226,17 @@ export async function processSubtitleQueue(
         .sort((a, b) => a.start - b.start)
         .slice(0, config.translationBatchSize);
 
-    if (cuesToProcess.length === 0) return;
+    if (cuesToProcess.length === 0) {
+        // If reprocess was requested but no cues matched (e.g., timing drift), try again shortly
+        if (reprocessRequested) {
+            setTimeout(
+                () => processSubtitleQueue(activePlatform, config, logPrefix),
+                100
+            );
+            reprocessRequested = false;
+        }
+        return;
+    }
 
     processingQueue = true;
 
@@ -2227,35 +2249,91 @@ export async function processSubtitleQueue(
             ));
         } catch (_) {}
 
-        for (const cueToProcess of cuesToProcess) {
+        let batchProcessed = false;
+        if (cuesToProcess.length > 1 || reprocessRequested) {
             try {
-                let response;
+                const texts = cuesToProcess.map((c) => c.original);
+                const requestPayload = {
+                    action: 'translateBatch',
+                    texts,
+                    delimiter: '|SUBTITLE_BREAK|',
+                    targetLang: config.targetLanguage,
+                    batchId: `content_${Date.now()}_${Math.random()
+                        .toString(36)
+                        .slice(2, 8)}`,
+                };
+
+                /** @type {{ success?: boolean, translations?: string[] }} */
+                let batchResponse;
                 if (sendRuntimeMessageWithRetry) {
-                    response = await sendRuntimeMessageWithRetry(
-                        {
-                            action: 'translate',
-                            text: cueToProcess.original,
-                            targetLang: config.targetLanguage,
-                            cueStart: cueToProcess.start,
-                            cueVideoId: cueToProcess.videoId,
-                        },
-                        { retries: 2, baseDelayMs: 120 }
+                    batchResponse = await sendRuntimeMessageWithRetry(
+                        requestPayload,
+                        { retries: 1, baseDelayMs: 120 }
                     );
-                    if (
-                        !response ||
-                        response.translatedText === undefined ||
-                        response.cueStart === undefined ||
-                        response.cueVideoId === undefined
-                    ) {
-                        const err = new Error(
-                            `Malformed response from background for translation. Response: ${JSON.stringify(response)}`
-                        );
-                        err.errorType = 'TRANSLATION_REQUEST_ERROR';
-                        throw err;
-                    }
                 } else {
-                    response = await new Promise((resolve, reject) => {
-                        chrome.runtime.sendMessage(
+                    batchResponse = await new Promise((resolve, reject) => {
+                        chrome.runtime.sendMessage(requestPayload, (res) => {
+                            if (chrome.runtime.lastError) {
+                                reject(
+                                    new Error(
+                                        chrome.runtime.lastError.message
+                                    )
+                                );
+                            } else if (res?.error) {
+                                reject(new Error(res.error));
+                            } else {
+                                resolve(res || {});
+                            }
+                        });
+                    });
+                }
+
+                if (
+                    batchResponse &&
+                    Array.isArray(batchResponse.translations) &&
+                    batchResponse.translations.length > 0
+                ) {
+                    const currentContextVideoId =
+                        activePlatform?.getCurrentVideoId();
+                    const limit = Math.min(
+                        cuesToProcess.length,
+                        batchResponse.translations.length
+                    );
+                    for (let i = 0; i < limit; i++) {
+                        const cueItem = cuesToProcess[i];
+                        const translatedText =
+                            batchResponse.translations[i] || '';
+                        const cueInMainQueue = subtitleQueue.find(
+                            (c) =>
+                                c.videoId === cueItem.videoId &&
+                                c.start === cueItem.start &&
+                                c.original === cueItem.original
+                        );
+                        if (
+                            cueInMainQueue &&
+                            cueInMainQueue.videoId === currentContextVideoId
+                        ) {
+                            cueInMainQueue.translated = translatedText;
+                        }
+                    }
+                    batchProcessed = true;
+                    reprocessRequested = false;
+                }
+            } catch (e) {
+                logWithFallback(
+                    'warn',
+                    'Batch translation failed, falling back to individual requests.',
+                    { logPrefix, errorMessage: e.message }
+                );
+            }
+        }
+
+        if (!batchProcessed) {
+            for (const cueToProcess of cuesToProcess) {
+                try {
+                    let response;
+                    if (sendRuntimeMessageWithRetry) {
+                        response = await sendRuntimeMessageWithRetry(
                             {
                                 action: 'translate',
                                 text: cueToProcess.original,
@@ -2263,93 +2341,118 @@ export async function processSubtitleQueue(
                                 cueStart: cueToProcess.start,
                                 cueVideoId: cueToProcess.videoId,
                             },
-                            (res) => {
-                                if (chrome.runtime.lastError) {
-                                    const err = new Error(
-                                        chrome.runtime.lastError.message
-                                    );
-                                    err.errorType = 'TRANSLATION_REQUEST_ERROR';
-                                    reject(err);
-                                } else if (res?.error) {
-                                    const err = new Error(
-                                        res.details || res.error
-                                    );
-                                    err.errorType =
-                                        res.errorType ||
-                                        'TRANSLATION_API_ERROR';
-                                    reject(err);
-                                } else if (
-                                    res?.translatedText !== undefined &&
-                                    res.cueStart !== undefined &&
-                                    res.cueVideoId !== undefined
-                                ) {
-                                    resolve(res);
-                                } else {
-                                    const err = new Error(
-                                        `Malformed response from background for translation. Response: ${JSON.stringify(res)}`
-                                    );
-                                    err.errorType = 'TRANSLATION_REQUEST_ERROR';
-                                    reject(err);
+                            { retries: 2, baseDelayMs: 120 }
+                        );
+                        if (
+                            !response ||
+                            response.translatedText === undefined ||
+                            response.cueStart === undefined ||
+                            response.cueVideoId === undefined
+                        ) {
+                            const err = new Error(
+                                `Malformed response from background for translation. Response: ${JSON.stringify(response)}`
+                            );
+                            err.errorType = 'TRANSLATION_REQUEST_ERROR';
+                            throw err;
+                        }
+                    } else {
+                        response = await new Promise((resolve, reject) => {
+                            chrome.runtime.sendMessage(
+                                {
+                                    action: 'translate',
+                                    text: cueToProcess.original,
+                                    targetLang: config.targetLanguage,
+                                    cueStart: cueToProcess.start,
+                                    cueVideoId: cueToProcess.videoId,
+                                },
+                                (res) => {
+                                    if (chrome.runtime.lastError) {
+                                        const err = new Error(
+                                            chrome.runtime.lastError.message
+                                        );
+                                        err.errorType =
+                                            'TRANSLATION_REQUEST_ERROR';
+                                        reject(err);
+                                    } else if (res?.error) {
+                                        const err = new Error(
+                                            res.details || res.error
+                                        );
+                                        err.errorType =
+                                            res.errorType ||
+                                            'TRANSLATION_API_ERROR';
+                                        reject(err);
+                                    } else if (
+                                        res?.translatedText !== undefined &&
+                                        res.cueStart !== undefined &&
+                                        res.cueVideoId !== undefined
+                                    ) {
+                                        resolve(res);
+                                    } else {
+                                        const err = new Error(
+                                            `Malformed response from background for translation. Response: ${JSON.stringify(res)}`
+                                        );
+                                        err.errorType =
+                                            'TRANSLATION_REQUEST_ERROR';
+                                        reject(err);
+                                    }
                                 }
+                            );
+                        });
+                    }
+
+                    const cueInMainQueue = subtitleQueue.find(
+                        (c) =>
+                            c.videoId === response.cueVideoId &&
+                            c.start === response.cueStart &&
+                            c.original === response.originalText
+                    );
+
+                    const currentContextVideoId =
+                        activePlatform?.getCurrentVideoId();
+                    if (
+                        cueInMainQueue &&
+                        cueInMainQueue.videoId === currentContextVideoId
+                    ) {
+                        cueInMainQueue.translated = response.translatedText;
+                    } else {
+                        logWithFallback(
+                            'warn',
+                            'Could not find/match cue post-translation or context changed.',
+                            {
+                                logPrefix,
+                                responseVideoId: response.cueVideoId,
+                                cueStart: response.cueStart,
+                                currentContextVideoId,
                             }
                         );
+                    }
+
+                    if (config.translationDelay > 0 && !reprocessRequested) {
+                        await new Promise((resolve) =>
+                            setTimeout(resolve, config.translationDelay)
+                        );
+                    }
+                } catch (error) {
+                    logWithFallback('error', 'Translation failed for cue.', {
+                        logPrefix,
+                        videoId: cueToProcess.videoId,
+                        start: cueToProcess.start.toFixed(2),
+                        originalText: cueToProcess.original.substring(0, 30),
+                        errorMessage: error.message,
+                        errorType: error.errorType,
                     });
-                }
-
-                const cueInMainQueue = subtitleQueue.find(
-                    (c) =>
-                        c.videoId === response.cueVideoId &&
-                        c.start === response.cueStart &&
-                        c.original === response.originalText
-                );
-
-                const currentContextVideoId =
-                    activePlatform?.getCurrentVideoId();
-                if (
-                    cueInMainQueue &&
-                    cueInMainQueue.videoId === currentContextVideoId
-                ) {
-                    cueInMainQueue.translated = response.translatedText;
-                } else {
-                    logWithFallback(
-                        'warn',
-                        'Could not find/match cue post-translation or context changed.',
-                        {
-                            logPrefix,
-                            responseVideoId: response.cueVideoId,
-                            cueStart: response.cueStart,
-                            currentContextVideoId,
-                        }
+                    const cueInQueueOnError = subtitleQueue.find(
+                        (c) =>
+                            c.start === cueToProcess.start &&
+                            c.original === cueToProcess.original &&
+                            c.videoId === cueToProcess.videoId
                     );
-                }
-
-                if (config.translationDelay > 0) {
-                    await new Promise((resolve) =>
-                        setTimeout(resolve, config.translationDelay)
-                    );
-                }
-            } catch (error) {
-                logWithFallback('error', 'Translation failed for cue.', {
-                    logPrefix,
-                    videoId: cueToProcess.videoId,
-                    start: cueToProcess.start.toFixed(2),
-                    originalText: cueToProcess.original.substring(0, 30),
-                    errorMessage: error.message,
-                    errorType: error.errorType,
-                });
-                const cueInQueueOnError = subtitleQueue.find(
-                    (c) =>
-                        c.start === cueToProcess.start &&
-                        c.original === cueToProcess.original &&
-                        c.videoId === cueToProcess.videoId
-                );
-                if (cueInQueueOnError) {
-                    const errorType =
-                        error.errorType || 'TRANSLATION_GENERIC_ERROR';
-                    cueInQueueOnError.translated = getLocalizedErrorMessage(
-                        errorType,
-                        error.message
-                    );
+                    if (cueInQueueOnError) {
+                        const errorType =
+                            error.errorType || 'TRANSLATION_GENERIC_ERROR';
+                        cueInQueueOnError.translated =
+                            getLocalizedErrorMessage(errorType, error.message);
+                    }
                 }
             }
         }
@@ -2375,6 +2478,16 @@ export async function processSubtitleQueue(
         setTimeout(
             () => processSubtitleQueue(activePlatform, config, logPrefix),
             50
+        );
+    }
+
+    // If a reprocess was requested (user scrubbed back), ensure we keep triggering
+    // the queue briefly to avoid stalls from timing mismatches.
+    if (reprocessRequested) {
+        reprocessRequested = false;
+        setTimeout(
+            () => processSubtitleQueue(activePlatform, config, logPrefix),
+            150
         );
     }
 }
