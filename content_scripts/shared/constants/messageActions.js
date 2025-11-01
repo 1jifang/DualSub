@@ -5,6 +5,7 @@ export const MessageActions = {
     TRANSLATE: 'translate',
     TRANSLATE_BATCH: 'translateBatch',
     CHECK_BATCH_SUPPORT: 'checkBatchSupport',
+    DEBUG_LOG: 'debugLog',
     FETCH_VTT: 'fetchVTT',
     CHANGE_PROVIDER: 'changeProvider',
     ANALYZE_CONTEXT: 'analyzeContext',

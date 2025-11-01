@@ -7,6 +7,7 @@
  */
 
 import { COMMON_CONSTANTS } from '../core/constants.js';
+import { MessageActions } from './constants/messageActions.js';
 
 // Logger instance for subtitle utilities
 let utilsLogger = null;
@@ -29,6 +30,23 @@ function logWithFallback(level, message, data = {}) {
             data
         );
     }
+}
+
+// Forward detailed debug logs to service worker for real-time monitoring
+function debugSWLog(level, tag, data = {}) {
+    try {
+        if (typeof chrome !== 'undefined' && chrome.runtime?.sendMessage) {
+            chrome.runtime.sendMessage(
+                {
+                    action: MessageActions.DEBUG_LOG,
+                    level,
+                    tag,
+                    data,
+                },
+                () => {}
+            );
+        }
+    } catch (_) {}
 }
 
 /**
@@ -367,6 +385,94 @@ export let translatedSubtitleElement = null;
 export let subtitlesActive = true;
 export let subtitleQueue = [];
 export let processingQueue = false;
+// In-memory translation cache to avoid redundant background calls across seeks
+// Keyed by videoId + cueStart + targetLang + providerId + textHash
+const translationCache = new Map();
+let currentProviderIdForCache = null;
+let schedulingVersion = 0; // Increment on seeks to invalidate in-flight priorities
+
+function simpleHash(text) {
+    // Lightweight 32-bit hash for cache keys
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) {
+        const ch = text.charCodeAt(i);
+        hash = (hash << 5) - hash + ch;
+        hash |= 0;
+    }
+    return hash.toString(36);
+}
+
+function makeCacheKey(videoId, cueStart, targetLang, providerId, originalText) {
+    const h = simpleHash(originalText || '');
+    return `${videoId}|${Math.floor(cueStart * 1000)}|${targetLang || 'auto'}|${providerId || 'prov'}|${h}`;
+}
+
+async function ensureProviderIdForCache() {
+    if (currentProviderIdForCache) return currentProviderIdForCache;
+    try {
+        const response = await new Promise((resolve) => {
+            chrome.runtime.sendMessage(
+                { action: 'checkBatchSupport' },
+                (res) => resolve(res || {})
+            );
+        });
+        currentProviderIdForCache = response?.providerId || null;
+    } catch (_) {
+        currentProviderIdForCache = null;
+    }
+    return currentProviderIdForCache;
+}
+
+function getCachedTranslation(videoId, cueStart, targetLang, originalText) {
+    const key = makeCacheKey(
+        videoId,
+        cueStart,
+        targetLang,
+        currentProviderIdForCache,
+        originalText
+    );
+    const hit = translationCache.get(key);
+    debugSWLog('info', 'CacheLookup', {
+        videoId,
+        cueStart,
+        targetLang,
+        providerId: currentProviderIdForCache,
+        hit: typeof hit === 'string',
+    });
+    logWithFallback('info', 'Cache lookup', {
+        videoId,
+        cueStart,
+        targetLang,
+        providerId: currentProviderIdForCache,
+        hit: typeof hit === 'string',
+    });
+    return hit;
+}
+
+function setCachedTranslation(videoId, cueStart, targetLang, originalText, translatedText) {
+    const key = makeCacheKey(
+        videoId,
+        cueStart,
+        targetLang,
+        currentProviderIdForCache,
+        originalText
+    );
+    translationCache.set(key, translatedText);
+    debugSWLog('info', 'CacheSet', {
+        videoId,
+        cueStart,
+        targetLang,
+        providerId: currentProviderIdForCache,
+        length: (translatedText || '').length,
+    });
+    logWithFallback('info', 'Cache set', {
+        videoId,
+        cueStart,
+        targetLang,
+        providerId: currentProviderIdForCache,
+        length: (translatedText || '').length,
+    });
+}
 
 // Guard against transient blanks during style changes and platform ID timing
 let lastStyleApplicationTs = 0;
@@ -379,6 +485,7 @@ export let lastProgressBarTime = -1;
 export let lastProgressBarUpdateTs = 0;
 export let findProgressBarIntervalId = null;
 export let findProgressBarRetries = 0;
+export let seekListener = null;
 export const { MAX_FIND_PROGRESS_BAR_RETRIES } = COMMON_CONSTANTS;
 
 export let lastLoggedTimeSec = -1;
@@ -790,6 +897,10 @@ export function ensureSubtitleContainer(
                 timeUpdateListener
             );
             previousVideoElement.removeAttribute('data-listener-attached');
+            if (seekListener && previousVideoElement.getAttribute('data-seek-listener-attached')) {
+                previousVideoElement.removeEventListener('seeked', seekListener);
+                previousVideoElement.removeAttribute('data-seek-listener-attached');
+            }
         }
         if (progressBarObserver) {
             progressBarObserver.disconnect();
@@ -813,6 +924,10 @@ export function ensureSubtitleContainer(
                 timeUpdateListener
             );
             attachedVideoElement.removeAttribute('data-listener-attached');
+            if (seekListener && attachedVideoElement.getAttribute('data-seek-listener-attached')) {
+                attachedVideoElement.removeEventListener('seeked', seekListener);
+                attachedVideoElement.removeAttribute('data-seek-listener-attached');
+            }
         }
         if (progressBarObserver) {
             progressBarObserver.disconnect();
@@ -972,6 +1087,7 @@ export function attachTimeUpdateListener(
                             config,
                             logPrefix
                         );
+                        debugSWLog('debug', 'TimeUpdateProgressBar', { time: lastProgressBarTime });
                     }
                     return;
                 }
@@ -988,12 +1104,37 @@ export function attachTimeUpdateListener(
                         config,
                         logPrefix
                     );
+                    debugSWLog('debug', 'TimeUpdateNative', { time: currentTime });
                 }
             }
         };
     }
 
     videoElement.addEventListener('timeupdate', timeUpdateListener);
+
+    // Attach seek listeners to immediately reprioritize tasks on user seeking
+    if (!seekListener) {
+        seekListener = () => {
+        try {
+            schedulingVersion++;
+            const currentVideoElem = activePlatform?.getVideoElement();
+            if (currentVideoElem) {
+                const t = currentVideoElem.currentTime;
+                logWithFallback('info', 'Seek detected; reprioritizing queue', {
+                    logPrefix,
+                    time: t,
+                });
+                debugSWLog('info', 'Seek', { time: t, schedulingVersion });
+                // Trigger quick re-processing based on new time
+                processSubtitleQueue(activePlatform, config, logPrefix);
+            }
+        } catch (_) {}
+        };
+    }
+    if (!videoElement.getAttribute('data-seek-listener-attached')) {
+        videoElement.addEventListener('seeked', seekListener);
+        videoElement.setAttribute('data-seek-listener-attached', 'true');
+    }
     videoElement.setAttribute('data-listener-attached', 'true');
     logWithFallback('info', 'Attached HTML5 timeupdate listener.', {
         logPrefix,
@@ -2094,6 +2235,31 @@ export function handleSubtitleDataFound(
                     cueType: 'original',
                 });
             });
+
+            // Apply cached translations immediately after enqueue to avoid rework
+            (async () => {
+                try {
+                    await ensureProviderIdForCache();
+                    for (const cue of subtitleQueue) {
+                        if (
+                            cue.videoId === currentVideoId &&
+                            cue.original &&
+                            !cue.translated &&
+                            !cue.useNativeTarget
+                        ) {
+                            const cached = getCachedTranslation(
+                                cue.videoId,
+                                cue.start,
+                                config.targetLanguage,
+                                cue.original
+                            );
+                            if (typeof cached === 'string' && cached.length > 0) {
+                                cue.translated = cached;
+                            }
+                        }
+                    }
+                } catch (_) {}
+            })();
         }
 
         if (subtitleData.availableLanguages) {
@@ -2223,17 +2389,84 @@ export async function processSubtitleQueue(
 
     const currentTime = timeSource + config.subtitleTimeOffset;
 
-    const cuesToProcess = subtitleQueue
-        .filter(
-            (cue) =>
-                cue.videoId === platformVideoId &&
-                cue.original &&
-                !cue.translated &&
-                !cue.useNativeTarget &&
-                cue.end >= currentTime
-        )
-        .sort((a, b) => a.start - b.start)
-        .slice(0, config.translationBatchSize);
+    // Dynamic priority parameters
+    const lookAheadWindowSec = Math.max(5, Number(config.prefetchWindowSec) || 30);
+    const lookBackWindowSec = Math.max(0, Number(config.prefetchPastWindowSec) || 10);
+
+    // Ensure provider id for cache keys
+    await ensureProviderIdForCache();
+
+    // Compute priority for untranslated cues near the current time
+    const candidates = subtitleQueue.filter((cue) => {
+        if (
+            cue.videoId !== platformVideoId ||
+            !cue.original ||
+            cue.useNativeTarget
+        ) {
+            return false;
+        }
+        if (cue.translated && typeof cue.translated === 'string') {
+            return false;
+        }
+        // Include cues slightly in the past to handle quick backward seeks
+        const inFutureOrRecentPast = cue.end >= currentTime - lookBackWindowSec;
+        return inFutureOrRecentPast;
+    });
+
+    // Apply cached translations before scheduling any requests
+    if (candidates.length > 0) {
+        for (const cue of candidates) {
+            const cached = getCachedTranslation(
+                cue.videoId,
+                cue.start,
+                config.targetLanguage,
+                cue.original
+            );
+            if (typeof cached === 'string' && cached.length > 0) {
+                cue.translated = cached;
+            }
+        }
+    }
+
+    const prioritized = candidates
+        .filter((cue) => !cue.translated)
+        .map((cue) => {
+            const startDiff = cue.start - currentTime; // positive if future
+            const isOnScreen = cue.start <= currentTime && cue.end >= currentTime;
+            let score = 0;
+            if (isOnScreen) score += 100;
+            if (startDiff >= 0) {
+                if (startDiff <= 5) score += 50; // next 5s
+                else if (startDiff <= 15) score += 30; // next 15s
+                else if (startDiff <= lookAheadWindowSec) score += 15; // within prefetch window
+                else score += Math.max(1, 5 - Math.min(300, startDiff) / 60); // far future low trickle
+            } else {
+                const past = -startDiff; // seconds in past from cue start
+                if (past <= lookBackWindowSec) score += 10; // recent past
+                else score += 1; // older past lowest
+            }
+            // Slightly prefer shorter cues (faster to translate and display)
+            const duration = Math.max(0, (cue.end || cue.start) - cue.start);
+            score += Math.max(0, 5 - Math.min(5, duration));
+            return { cue, score, start: cue.start, end: cue.end, isOnScreen, startDiff, duration };
+        })
+        .sort((a, b) => b.score - a.score)
+        .slice(0, Math.max(1, Number(config.translationBatchSize) || 3))
+        .map((x) => x.cue);
+
+    const cuesToProcess = prioritized;
+    debugSWLog('debug', 'Prioritization', {
+        currentTime,
+        candidates: candidates.length,
+        chosen: prioritized.map((c) => ({ start: c.start, end: c.end })),
+        schedulingVersion,
+    });
+    logWithFallback('info', 'Queue reprioritized', {
+        currentTime,
+        candidates: candidates.length,
+        chosenStarts: prioritized.map((c) => c.start),
+        schedulingVersion,
+    });
 
     if (cuesToProcess.length === 0) return;
 
@@ -2248,7 +2481,94 @@ export async function processSubtitleQueue(
             ));
         } catch (_) {}
 
-        for (const cueToProcess of cuesToProcess) {
+        const myVersion = schedulingVersion;
+
+        // If provider supports batch, use batch API to reduce overhead
+        let supportsBatch = false;
+        try {
+            const res = await new Promise((resolve) => {
+                chrome.runtime.sendMessage(
+                    { action: 'checkBatchSupport' },
+                    (r) => resolve(r || { supportsBatch: false })
+                );
+            });
+            supportsBatch = !!res.supportsBatch;
+        } catch (_) {}
+
+        // Split into cached vs uncached just in case cache arrived late
+        const batchCandidates = cuesToProcess.filter((c) => !c.translated);
+
+        if (supportsBatch && batchCandidates.length > 1) {
+            if (myVersion !== schedulingVersion) return; // invalidated by seek
+
+            const texts = batchCandidates.map((c) => c.original);
+            debugSWLog('debug', 'BatchStart', {
+                count: batchCandidates.length,
+                starts: batchCandidates.map((c) => c.start),
+                schedulingVersion: myVersion,
+            });
+            logWithFallback('info', 'Batch translation started', {
+                count: batchCandidates.length,
+                starts: batchCandidates.map((c) => c.start),
+                schedulingVersion: myVersion,
+            });
+            let response;
+            if (sendRuntimeMessageWithRetry) {
+                response = await sendRuntimeMessageWithRetry(
+                    {
+                        action: 'translateBatch',
+                        texts,
+                        targetLang: config.targetLanguage,
+                        delimiter: '|SUBTITLE_BREAK|',
+                    },
+                    { retries: 1, baseDelayMs: 120 }
+                );
+            } else {
+                response = await new Promise((resolve, reject) => {
+                    chrome.runtime.sendMessage(
+                        {
+                            action: 'translateBatch',
+                            texts,
+                            targetLang: config.targetLanguage,
+                            delimiter: '|SUBTITLE_BREAK|',
+                        },
+                        (res) => {
+                            if (chrome.runtime.lastError) {
+                                reject(new Error(chrome.runtime.lastError.message));
+                            } else if (res?.error) {
+                                reject(new Error(res.error));
+                            } else {
+                                resolve(res);
+                            }
+                        }
+                    );
+                });
+            }
+
+            const translations = response?.translations || [];
+            for (let i = 0; i < Math.min(batchCandidates.length, translations.length); i++) {
+                const cue = batchCandidates[i];
+                const translatedText = translations[i];
+                if (typeof translatedText === 'string') {
+                    cue.translated = translatedText;
+                    setCachedTranslation(
+                        cue.videoId,
+                        cue.start,
+                        config.targetLanguage,
+                        cue.original,
+                        translatedText
+                    );
+                }
+            }
+            debugSWLog('debug', 'BatchEnd', {
+                applied: Math.min(batchCandidates.length, translations.length),
+            });
+            logWithFallback('info', 'Batch translation completed', {
+                applied: Math.min(batchCandidates.length, translations.length),
+            });
+        } else {
+            for (const cueToProcess of cuesToProcess) {
+                if (myVersion !== schedulingVersion) break; // invalidated by seek
             try {
                 let response;
                 if (sendRuntimeMessageWithRetry) {
@@ -2344,7 +2664,31 @@ export async function processSubtitleQueue(
                     );
                 }
 
-                if (config.translationDelay > 0) {
+                // Update local cache for future seeks
+                try {
+                    const cue = cueInMainQueue || cueToProcess;
+                    if (cue && typeof response.translatedText === 'string') {
+                        setCachedTranslation(
+                            cue.videoId,
+                            cue.start,
+                            config.targetLanguage,
+                            cue.original,
+                            response.translatedText
+                        );
+                    }
+                } catch (_) {}
+                debugSWLog('debug', 'IndividualEnd', {
+                    start: cueToProcess.start,
+                    scheduledAt: myVersion,
+                    currentVersion: schedulingVersion,
+                });
+                logWithFallback('debug', 'Individual translation done', {
+                    start: cueToProcess.start,
+                    scheduledAt: myVersion,
+                    currentVersion: schedulingVersion,
+                });
+
+                if (config.translationDelay > 0 && myVersion === schedulingVersion) {
                     await new Promise((resolve) =>
                         setTimeout(resolve, config.translationDelay)
                     );
@@ -2357,6 +2701,14 @@ export async function processSubtitleQueue(
                     originalText: cueToProcess.original.substring(0, 30),
                     errorMessage: error.message,
                     errorType: error.errorType,
+                });
+                debugSWLog('warn', 'IndividualError', {
+                    start: cueToProcess.start,
+                    message: error?.message,
+                });
+                logWithFallback('warn', 'Individual translation error', {
+                    start: cueToProcess.start,
+                    message: error?.message,
                 });
                 const cueInQueueOnError = subtitleQueue.find(
                     (c) =>
@@ -2373,6 +2725,7 @@ export async function processSubtitleQueue(
                     );
                 }
             }
+        }
         }
     } finally {
         processingQueue = false;

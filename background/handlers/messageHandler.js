@@ -216,6 +216,35 @@ class MessageHandler {
                     sendResponse
                 );
 
+            case MessageActions.DEBUG_LOG:
+                try {
+                    const { level = 'debug', tag = 'ContentDebug', data = {} } = message;
+                    const payload = {
+                        ...data,
+                        ts: Date.now(),
+                        level,
+                        tag,
+                    };
+                    // Always print to SW console regardless of logging level
+                    try {
+                        if (typeof console[level] === 'function') {
+                            console[level](`[${tag}]`, payload);
+                        } else {
+                            console.log(`[${tag}]`, payload);
+                        }
+                    } catch (_) {}
+                    // Also forward to logger if available (may filter by level)
+                    try {
+                        if (this.logger && typeof this.logger[level] === 'function') {
+                            this.logger[level](`[${tag}]`, payload);
+                        }
+                    } catch (_) {}
+                    sendResponse({ success: true });
+                } catch (e) {
+                    try { sendResponse({ success: false, error: e?.message }); } catch (_) {}
+                }
+                return true;
+
             default:
                 this.logger.warn('Unknown message action', {
                     action: message.action,
@@ -967,6 +996,8 @@ class MessageHandler {
 
         return true;
     }
+
+    //
 }
 
 // Export singleton instance
