@@ -302,6 +302,7 @@
     "maxConcurrentBatchesHelp": {
         "message": "एक साथ संसाधित होने वाले अनुवाद बैचों की संख्या"
     },
+
     "cardProviderBatchTitle": { "message": "प्रदाता-विशिष्ट बैच आकार" },
     "cardProviderBatchDesc": {
         "message": "प्रत्येक अनुवाद प्रदाता के लिए सर्वोत्तम बैच आकार कॉन्फ़िगर करें। ये सेटिंग्स \"प्रदाता-अनुकूलित सेटिंग्स उपयोग करें\" सक्षम होने पर लागू होती हैं।"
@@ -459,9 +460,53 @@
     "contextTypeCulturalLabel": { "message": "सांस्कृतिक संदर्भ:" },
     "contextTypeCulturalHelp": {
         "message": "सांस्कृतिक संदर्भों, मुहावरों और सामाजिक संदर्भ का विश्लेषण करें"
-    }
+    },
+    "contextTypeHistoricalLabel": { "message": "ऐतिहासिक संदर्भ:" },
+    "contextTypeHistoricalHelp": {
+        "message": "ऐतिहासिक पृष्ठभूमि और समय अवधि संदर्भ प्रदान करें"
+    },
+    "contextTypeLinguisticLabel": { "message": "भाषायी विश्लेषण:" },
+    "contextTypeLinguisticHelp": {
+        "message": "व्याकरण, व्युत्पत्ति और भाषा संरचना समझाएँ"
+    },
 
-
-
-
+    "cardAIContextPrivacyTitle": { "message": "गोपनीयता और डेटा" },
+    "cardAIContextPrivacyDesc": {
+        "message": "संदर्भ विश्लेषण के दौरान आपके डेटा को कैसे संभाला जाता है, इसे नियंत्रित करें।"
+    },
+    "aiContextUserConsentLabel": {
+        "message": "मैं विश्लेषण हेतु उपशीर्षक पाठ AI प्रदाताओं को भेजने की सहमति देता/देती हूँ:"
+    },
+    "aiContextUserConsentHelp": {
+        "message": "AI संदर्भ विश्लेषण के काम करने के लिए आवश्यक"
+    },
+    "aiContextDataSharingLabel": {
+        "message": "अनाम उपयोग विश्लेषिकी की अनुमति दें:"
+    },
+    "aiContextDataSharingHelp": {
+        "message": "अनाम उपयोग डेटा साझा करके सेवा में सुधार में मदद करें"
+    },
+    "cardAIContextAdvancedTitle": { "message": "उन्नत सेटिंग्स" },
+    "cardAIContextAdvancedDesc": {
+        "message": "AI संदर्भ विश्लेषण व्यवहार के उन्नत विकल्प कॉन्फ़िगर करें।"
+    },
+    "aiContextTimeoutLabel": { "message": "रिक्वेस्ट टाइमआउट (ms):" },
+    "aiContextTimeoutHelp": {
+        "message": "AI प्रतिक्रिया के लिए प्रतीक्षा करने का अधिकतम समय"
+    },
+    "aiContextRateLimitLabel": { "message": "रेट लिमिट (रिक्वेस्ट/मिनट):" },
+    "aiContextRateLimitHelp": {
+        "message": "प्रति मिनट अनुरोधों की अधिकतम संख्या"
+    },
+    "aiContextCacheEnabledLabel": { "message": "कैश सक्षम करें:" },
+    "aiContextCacheEnabledHelp": {
+        "message": "API कॉल्स को कम करने के लिए विश्लेषण परिणाम कैश करें"
+    },
+    "aiContextRetryAttemptsLabel": { "message": "पुनः प्रयासों की संख्या:" },
+    "aiContextRetryAttemptsHelp": {
+        "message": "विफल अनुरोधों को पुनः प्रयास करने की संख्या"
+    },
+    "showAdvancedSettings": { "message": "उन्नत सेटिंग्स दिखाएँ" },
+    "hideAdvancedSettings": { "message": "उन्नत सेटिंग्स छिपाएँ" }
 }
+
