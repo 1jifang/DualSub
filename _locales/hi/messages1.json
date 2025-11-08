@@ -204,6 +204,104 @@
     "vertexModelLabel": { "message": "मॉडल:" },
     "vertexMissingConfig": {
         "message": "कृपया एक्सेस टोकन और प्रोजेक्ट ID दर्ज करें।"
+    },
+    "vertexConnectionFailed": { "message": "कनेक्शन विफल: %s" },
+    "vertexServiceAccountLabel": { "message": "सर्विस अकाउंट JSON:" },
+    "vertexImportButton": { "message": "JSON फ़ाइल आयात करें" },
+    "vertexRefreshButton": { "message": "🔄 टोकन रिफ्रेश" },
+    "vertexImportHint": { "message": "नीचे क्रेडेंशियल स्वतः भरता है" },
+    "vertexImporting": { "message": "आयात हो रहा है..." },
+    "vertexRefreshingToken": { "message": "एक्सेस टोकन रिफ्रेश हो रहा है..." },
+    "vertexGeneratingToken": { "message": "एक्सेस टोकन जनरेट हो रहा है..." },
+    "vertexImportSuccess": {
+        "message": "सर्विस अकाउंट आयात हुआ और टोकन जनरेट हुआ।"
+    },
+    "vertexImportFailed": { "message": "आयात विफल: %s" },
+    "vertexTokenRefreshed": {
+        "message": "एक्सेस टोकन सफलतापूर्वक रिफ्रेश हुआ।"
+    },
+    "vertexRefreshFailed": { "message": "टोकन रिफ्रेश विफल: %s" },
+    "vertexTokenExpired": {
+        "message": "⚠️ एक्सेस टोकन की समय-सीमा समाप्त। नवीनीकरण हेतु रिफ्रेश करें।"
+    },
+    "vertexTokenExpiringSoon": {
+        "message": "⚠️ टोकन %s मिनट में समाप्त होगा। रिफ्रेश करने पर विचार करें।"
+    },
+    "vertexConfigured": {
+        "message": "⚠️ Vertex AI कॉन्फ़िगर किया गया। कृपया कनेक्शन परीक्षण करें।"
+    },
+    "vertexNotConfigured": {
+        "message": "कृपया सर्विस अकाउंट JSON आयात करें या क्रेडेंशियल दर्ज करें।"
+    },
+    "featureVertexServiceAccount": { "message": "सर्विस अकाउंट JSON आयात" },
+    "featureVertexAutoToken": { "message": "टोकन स्वतः उत्पन्न" },
+    "featureVertexGemini": { "message": "Vertex AI के माध्यम से Google Gemini मॉडल" },
+    "providerNote": { "message": "टिप्पणी:" },
+    "vertexNote": {
+        "message": "एक्सेस टोकन 1 घंटे बाद समाप्त होते हैं। आपका सर्विस अकाउंट सुरक्षित रूप से संग्रहीत है ताकि आसानी से टोकन रिफ्रेश हो सके—आवश्यक होने पर 'Refresh Token' पर क्लिक करें।"
+    },
+    "baseUrlLabel": { "message": "बेस URL:" },
+    "modelLabel": { "message": "मॉडल:" },
+    "featureCustomizable": { "message": "अनुकूलन योग्य एंडपॉइंट और मॉडल" },
+    "fetchModelsButton": { "message": "मॉडल प्राप्त करें" },
+    "testConnectionButton": { "message": "कनेक्शन परीक्षण" },
+    "openaiApiKeyPlaceholder": {
+        "message": "अपनी OpenAI-संगत API कुंजी दर्ज करें"
+    },
+    "openaiBaseUrlPlaceholder": {
+        "message": "उदा., https://api.openai.com/v1"
+    },
+    "openaiApiKeyError": { "message": "कृपया पहले अपनी API कुंजी दर्ज करें।" },
+    "openaiApiKeyNeedsTesting": { "message": "⚠️ API कुंजी का परीक्षण आवश्यक है।" },
+    "openaiTestNeedsTesting": {
+        "message": "⚠️ OpenAI-संगत API कुंजी का परीक्षण आवश्यक है।"
+    },
+    "openaiTestingConnection": { "message": "कनेक्शन का परीक्षण हो रहा है..." },
+    "openaiConnectionSuccessful": { "message": "कनेक्शन सफल!" },
+    "openaiConnectionFailed": { "message": "कनेक्शन विफल: %s" },
+    "openaieFetchingModels": { "message": "मॉडल प्राप्त किए जा रहे हैं..." },
+    "openaiModelsFetchedSuccessfully": {
+        "message": "मॉडल सफलतापूर्वक प्राप्त हुए।"
+    },
+    "openaiFailedToFetchModels": { "message": "मॉडल प्राप्त करने में विफल: %s" },
+
+    "cardLoggingLevelTitle": { "message": "लॉग स्तर" },
+    "cardLoggingLevelDesc": {
+        "message": "ब्राउज़र कंसोल में दिखने वाली डीबग जानकारी की मात्रा नियंत्रित करें। उच्च स्तरों में निम्न स्तर शामिल होते हैं।"
+    },
+    "loggingLevelLabel": { "message": "लॉग स्तर:" },
+    "loggingLevelOff": { "message": "बंद" },
+    "loggingLevelError": { "message": "केवल त्रुटि" },
+    "loggingLevelWarn": { "message": "चेतावनियाँ और त्रुटियाँ" },
+    "loggingLevelInfo": { "message": "जानकारी और ऊपर" },
+    "loggingLevelDebug": { "message": "डिबग (सभी)" },
+
+    "cardBatchTranslationTitle": { "message": "बैच अनुवाद" },
+    "cardBatchTranslationDesc": {
+        "message": "बैच अनुवाद कई उपशीर्षक खंडों को एक साथ संसाधित करता है, API कॉल्स को 80-90% तक कम करता है और प्रदर्शन सुधारता है। अपनी पसंदीदा अनुवाद सेवा के लिए सर्वोत्तम सेटिंग्स कॉन्फ़िगर करें।"
+    },
+    "batchingEnabledLabel": { "message": "बैच अनुवाद सक्षम करें:" },
+    "batchingEnabledHelp": {
+        "message": "कई उपशीर्षक खंडों को एकल अनुवाद अनुरोधों में समूहित करता है"
+    },
+    "useProviderDefaultsLabel": {
+        "message": "प्रदाता-अनुकूलित सेटिंग्स उपयोग करें:"
+    },
+    "useProviderDefaultsHelp": {
+        "message": "प्रत्येक अनुवाद प्रदाता के लिए सर्वोत्तम बैच आकार स्वतः उपयोग करें"
+    },
+    "globalBatchSizeLabel": { "message": "वैश्विक बैच आकार:" },
+    "globalBatchSizeHelp": {
+        "message": "एक साथ संसाधित होने वाले उपशीर्षक खंडों की संख्या (1-15)"
+    },
+    "smartBatchingLabel": { "message": "स्मार्ट बैच अनुकूलन:" },
+    "smartBatchingHelp": {
+        "message": "प्लेबैक स्थिति के आधार पर उपशीर्षक खंडों को प्राथमिकता देता है"
+    },
+    "maxConcurrentBatchesLabel": { "message": "अधिकतम समकालिक बैच:" },
+    "maxConcurrentBatchesHelp": {
+        "message": "एक साथ संसाधित होने वाले अनुवाद बैचों की संख्या"
     }
+
 
 }
