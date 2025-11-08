@@ -383,7 +383,84 @@
     "aiContextHistorical": { "message": "📜 ऐतिहासिक संदर्भ" },
     "aiContextHistoricalSignificance": {
         "message": "📜 ऐतिहासिक महत्व"
+    },
+    "aiContextEvolution": { "message": "🔄 समय के साथ विकास" },
+    "aiContextLinguistic": { "message": "🔤 भाषायी विश्लेषण" },
+    "aiContextGrammar": { "message": "📝 व्याकरण और अर्थ" },
+    "aiContextUsage": { "message": "💡 उपयोग व उदाहरण" },
+    "aiContextExamples": { "message": "उदाहरण:" },
+    "aiContextLearningTips": { "message": "🎯 सीखने के सुझाव" },
+    "aiContextRelatedExpressions": { "message": "🔗 संबंधित अभिव्यक्तियाँ" },
+    "aiContextKeyInsights": { "message": "🔑 प्रमुख जानकारियाँ" },
+    "aiContextTypeCultural": { "message": "सांस्कृतिक" },
+    "aiContextTypeHistorical": { "message": "ऐतिहासिक" },
+    "aiContextTypeLinguistic": { "message": "भाषायी" },
+    "aiContextTypeComprehensive": { "message": "समग्र" },
+    "aiContextTypeGeneric": { "message": "संदर्भ" },
+    "aiContextClose": { "message": "बंद करें" },
+    "aiContextAnalysisResults": { "message": "विश्लेषण परिणाम" },
+    "aiContextRetrying": { "message": "विश्लेषण विफल, पुनर्जनन हो रहा है..." },
+    "aiContextRetryNotification": { "message": "विश्लेषण विफल, पुनः प्रयास हो रहा है..." },
+    "aiContextRetryButton": { "message": "फिर से प्रयास करें" },
+    "aiContextMalformedResponse": {
+        "message": "AI सेवा ने अमान्य प्रतिक्रिया प्रारूप लौटाया। यह अस्थायी सेवा समस्याओं के कारण हो सकता है।"
+    },
+    "aiContextJsonCodeBlock": {
+        "message": "AI सेवा ने संरचित डेटा के बजाय अप्रसंस्कृत JSON कोड लौटाया। यह प्रतिक्रिया में फ़ॉर्मेटिंग त्रुटि का संकेत है।"
+    },
+    "aiContextCulturalContext": { "message": "सांस्कृतिक संदर्भ:" },
+    "aiContextSocialUsage": { "message": "सामाजिक उपयोग:" },
+    "aiContextRegionalNotes": { "message": "क्षेत्रीय नोट्स:" },
+    "aiContextOrigins": { "message": "उत्पत्ति:" },
+    "aiContextHistoricalContext": { "message": "ऐतिहासिक संदर्भ:" },
+    "aiContextHistoricalSignificance": {
+        "message": "ऐतिहासिक महत्व:"
+    },
+    "aiContextEvolution": { "message": "विकास:" },
+    "aiContextEtymology": { "message": "व्युत्पत्ति:" },
+    "aiContextGrammarNotes": { "message": "व्याकरण नोट्स:" },
+    "aiContextTranslationNotes": { "message": "अनुवाद नोट्स:" },
+    "aiContextLinguisticAnalysis": { "message": "भाषायी विश्लेषण:" },
+    "aiContextGrammarSemantics": { "message": "व्याकरण और अर्थ:" },
+    "aiContextUsageExamples": { "message": "उपयोग व उदाहरण:" },
+    "aiContextLearningTips": { "message": "सीखने के सुझाव:" },
+    "aiContextRelatedExpressions": { "message": "संबंधित अभिव्यक्तियाँ:" },
+    "aiContextKeyInsights": { "message": "प्रमुख जानकारियाँ:" },
+
+    "navAIContext": { "message": "AI संदर्भ" },
+    "sectionAIContext": { "message": "AI संदर्भ सहायक" },
+    "cardAIContextToggleTitle": { "message": "AI संदर्भ विश्लेषण सक्षम करें" },
+    "cardAIContextToggleDesc": {
+        "message": "उपशीर्षक पाठ के लिए AI-संचालित सांस्कृतिक, ऐतिहासिक और भाषायी संदर्भ विश्लेषण सक्षम करें। विस्तृत व्याख्याओं के लिए उपशीर्षकों में शब्दों या वाक्यांशों पर क्लिक करें।"
+    },
+    "aiContextEnabledLabel": { "message": "AI संदर्भ सक्षम करें:" },
+    "cardAIContextProviderTitle": { "message": "AI प्रदाता" },
+    "cardAIContextProviderDesc": {
+        "message": "संदर्भ विश्लेषण के लिए AI सेवा प्रदाता चुनें। अलग-अलग प्रदाता गुणवत्ता और प्रतिक्रिया समय में भिन्न हो सकते हैं।"
+    },
+    "aiContextProviderLabel": { "message": "प्रदाता:" },
+    "cardOpenAIContextTitle": { "message": "OpenAI विन्यास" },
+    "cardOpenAIContextDesc": {
+        "message": "संदर्भ विश्लेषण के लिए अपने OpenAI API सेटिंग्स कॉन्फ़िगर करें। आपको मान्य OpenAI API कुंजी की आवश्यकता है।"
+    },
+    "openaiApiKeyLabel": { "message": "API कुंजी:" },
+    "openaiBaseUrlLabel": { "message": "बेस URL:" },
+    "openaiModelLabel": { "message": "मॉडल:" },
+    "cardGeminiContextTitle": { "message": "Google Gemini विन्यास" },
+    "cardGeminiContextDesc": {
+        "message": "संदर्भ विश्लेषण के लिए अपने Google Gemini API सेटिंग्स कॉन्फ़िगर करें। आपको मान्य Gemini API कुंजी की आवश्यकता है।"
+    },
+    "geminiApiKeyLabel": { "message": "API कुंजी:" },
+    "geminiModelLabel": { "message": "मॉडल:" },
+    "cardAIContextTypesTitle": { "message": "संदर्भ प्रकार" },
+    "cardAIContextTypesDesc": {
+        "message": "उन संदर्भ विश्लेषण प्रकारों को सक्षम करें जिन्हें आप उपयोग करना चाहते हैं। आप कई प्रकार सक्षम कर सकते हैं।"
+    },
+    "contextTypeCulturalLabel": { "message": "सांस्कृतिक संदर्भ:" },
+    "contextTypeCulturalHelp": {
+        "message": "सांस्कृतिक संदर्भों, मुहावरों और सामाजिक संदर्भ का विश्लेषण करें"
     }
+
 
 
 
