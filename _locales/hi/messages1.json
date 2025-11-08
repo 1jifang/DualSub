@@ -109,6 +109,101 @@
     "lang_zh_TW": { "message": "चीनी (परंपरागत)" },
     "lang_ru": { "message": "रूसी" },
     "lang_ar": { "message": "अरबी" },
-    "lang_hi": { "message": "हिन्दी" }
+    "lang_hi": { "message": "हिन्दी" },
+
+    "testDeepLButton": { "message": "DeepL कनेक्शन परीक्षण" },
+    "deeplApiKeyError": { "message": "कृपया पहले अपनी DeepL API कुंजी दर्ज करें।" },
+    "deeplTestNeedsTesting": { "message": "⚠️ DeepL API कुंजी का परीक्षण आवश्यक है।" },
+    "testingButton": { "message": "परीक्षण हो रहा है..." },
+    "testingConnection": { "message": "DeepL कनेक्शन का परीक्षण हो रहा है..." },
+    "deeplTestSuccess": {
+        "message": "✅ DeepL API परीक्षण सफल!"
+    },
+    "deeplTestUnexpectedFormat": {
+        "message": "⚠️ DeepL API का उत्तर अप्रत्याशित प्रारूप में है"
+    },
+    "deeplTestInvalidKey": {
+        "message": "❌ DeepL API कुंजी अमान्य या अस्वीकृत है।"
+    },
+    "deeplTestQuotaExceeded": {
+        "message": "❌ DeepL API कोटा पार हो गया। कृपया उपयोग सीमाएँ जाँचें।"
+    },
+    "deeplTestApiError": { "message": "❌ DeepL API त्रुटि (%d): %s" },
+    "deeplTestNetworkError": {
+        "message": "❌ नेटवर्क त्रुटि: DeepL API से कनेक्ट नहीं हो सका। अपनी इंटरनेट कनेक्शन जाँचें।"
+    },
+    "deeplTestGenericError": { "message": "❌ परीक्षण विफल: %s" },
+    "deepLApiUnavailable": { "message": "DeepL API उपलब्ध नहीं" },
+    "deepLApiUnavailableTooltip": {
+        "message": "DeepL API स्क्रिप्ट लोड करने में विफल"
+    },
+    "deeplApiNotLoadedError": {
+        "message": "❌ DeepL API स्क्रिप्ट उपलब्ध नहीं है। कृपया पृष्ठ रिफ्रेश करें।"
+    },
+    "cardGoogleTitle": { "message": "Google अनुवाद" },
+    "cardGoogleDesc": {
+        "message": "Google द्वारा प्रदत्त निःशुल्क अनुवाद सेवा। अतिरिक्त कॉन्फ़िगरेशन आवश्यक नहीं।"
+    },
+    "cardMicrosoftTitle": { "message": "Microsoft अनुवाद" },
+    "cardMicrosoftDesc": {
+        "message": "Microsoft Edge द्वारा प्रदत्त निःशुल्क अनुवाद सेवा। अतिरिक्त कॉन्फ़िगरेशन आवश्यक नहीं।"
+    },
+    "cardDeepLFreeTitle": { "message": "DeepL अनुवाद (निःशुल्क)" },
+    "cardDeepLFreeDesc": {
+        "message": "उच्च गुणवत्ता परिणामों के साथ निःशुल्क DeepL सेवा। API कुंजी आवश्यक नहीं - DeepL वेब इंटरफ़ेस का उपयोग।"
+    },
+    "providerStatus": { "message": "स्थिति:" },
+    "statusReady": { "message": "उपयोग के लिए तैयार" },
+    "providerFeatures": { "message": "विशेषताएँ:" },
+    "featureFree": { "message": "निःशुल्क उपयोग" },
+    "featureNoApiKey": { "message": "API कुंजी आवश्यक नहीं" },
+    "featureWideLanguageSupport": { "message": "विस्तृत भाषा समर्थन" },
+    "featureFastTranslation": { "message": "तेज़ अनुवाद" },
+    "featureHighQuality": { "message": "उच्च गुणवत्ता अनुवाद" },
+    "featureGoodPerformance": { "message": "अच्छा प्रदर्शन" },
+    "featureHighestQuality": { "message": "सर्वोच्च गुणवत्ता अनुवाद" },
+    "featureApiKeyRequired": { "message": "API कुंजी आवश्यक" },
+    "featureLimitedLanguages": { "message": "सीमित भाषा समर्थन" },
+    "featureUsageLimits": { "message": "उपयोग सीमाएँ लागू" },
+    "featureMultipleBackups": { "message": "एकाधिक बैकअप विधियाँ" },
+
+    "providerNotes": { "message": "टिप्पणियाँ:" },
+    "noteSlowForSecurity": {
+        "message": "सुरक्षा उपायों के कारण थोड़ा धीमा"
+    },
+    "noteAutoFallback": {
+        "message": "वैकल्पिक सेवाओं पर स्वतः फॉलबैक"
+    },
+    "noteRecommendedDefault": { "message": "डिफ़ॉल्ट प्रदाता के रूप में अनुशंसित" },
+
+    "providerGoogleName": { "message": "Google अनुवाद (निःशुल्क)" },
+    "providerMicrosoftName": { "message": "Microsoft अनुवाद (निःशुल्क)" },
+    "providerDeepLName": { "message": "DeepL (API कुंजी आवश्यक)" },
+    "providerDeepLFreeName": { "message": "DeepL अनुवाद (निःशुल्क)" },
+    "providerOpenAICompatibleName": {
+        "message": "OpenAI संगत (API कुंजी आवश्यक)"
+    },
+    "providerVertexGeminiName": {
+        "message": "Vertex AI Gemini (API कुंजी आवश्यक)"
+    },
+    "cardOpenAICompatibleTitle": {
+        "message": "OpenAI संगत (API कुंजी आवश्यक)"
+    },
+    "cardOpenAICompatibleDesc": {
+        "message": "Gemini जैसी OpenAI-संगत सेवाओं के लिए API कुंजी और सेटिंग दर्ज करें।"
+    },
+    "cardVertexGeminiTitle": {
+        "message": "Vertex AI Gemini (API कुंजी आवश्यक)"
+    },
+    "cardVertexGeminiDesc": {
+        "message": "अपना एक्सेस टोकन और Vertex प्रोजेक्ट सेटिंग दर्ज करें।"
+    },
+    "vertexAccessTokenLabel": { "message": "एक्सेस टोकन:" },
+    "vertexProjectIdLabel": { "message": "प्रोजेक्ट ID:" },
+    "vertexLocationLabel": { "message": "स्थान:" },
+    "vertexModelLabel": { "message": "मॉडल:" },
+    "vertexMissingConfig": {
+        "message": "कृपया एक्सेस टोकन और प्रोजेक्ट ID दर्ज करें।"
+    }
 
 }
