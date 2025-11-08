@@ -301,7 +301,90 @@
     "maxConcurrentBatchesLabel": { "message": "अधिकतम समकालिक बैच:" },
     "maxConcurrentBatchesHelp": {
         "message": "एक साथ संसाधित होने वाले अनुवाद बैचों की संख्या"
+    },
+    "cardProviderBatchTitle": { "message": "प्रदाता-विशिष्ट बैच आकार" },
+    "cardProviderBatchDesc": {
+        "message": "प्रत्येक अनुवाद प्रदाता के लिए सर्वोत्तम बैच आकार कॉन्फ़िगर करें। ये सेटिंग्स \"प्रदाता-अनुकूलित सेटिंग्स उपयोग करें\" सक्षम होने पर लागू होती हैं।"
+    },
+    "openaieBatchSizeLabel": { "message": "OpenAI बैच आकार:" },
+    "openaieBatchSizeHelp": {
+        "message": "अनुशंसित: 5-10 खंड (डिफ़ॉल्ट: 8)"
+    },
+    "googleBatchSizeLabel": { "message": "Google अनुवाद बैच आकार:" },
+    "googleBatchSizeHelp": {
+        "message": "अनुशंसित: 3-5 खंड (डिफ़ॉल्ट: 4)"
+    },
+    "deeplBatchSizeLabel": { "message": "DeepL बैच आकार:" },
+    "deeplBatchSizeHelp": {
+        "message": "अनुशंसित: 2-3 खंड (डिफ़ॉल्ट: 3)"
+    },
+    "microsoftBatchSizeLabel": { "message": "Microsoft अनुवाद बैच आकार:" },
+    "microsoftBatchSizeHelp": {
+        "message": "अनुशंसित: 3-5 खंड (डिफ़ॉल्ट: 4)"
+    },
+    "vertexBatchSizeLabel": { "message": "Vertex AI बैच आकार:" },
+    "vertexBatchSizeHelp": {
+        "message": "अनुशंसित: 5-10 खंड (डिफ़ॉल्ट: 8)"
+    },
+
+    "cardProviderDelayTitle": { "message": "प्रदाता-विशिष्ट अनुरोध विलंब" },
+    "cardProviderDelayDesc": {
+        "message": "खाता लॉकआउट से बचने के लिए अनुवाद अनुरोधों के बीच आवश्यक विलंब कॉन्फ़िगर करें। बैच प्रोसेसिंग सक्षम होने पर भी ये विलंब लागू होते हैं।"
+    },
+    "openaieDelayLabel": { "message": "OpenAI अनुरोध विलंब (ms):" },
+    "openaieDelayHelp": {
+        "message": "अनुरोधों के बीच न्यूनतम विलंब (डिफ़ॉल्ट: 100ms)"
+    },
+    "googleDelayLabel": { "message": "Google अनुवाद अनुरोध विलंब (ms):" },
+    "googleDelayHelp": {
+        "message": "अस्थायी लॉकआउट से बचने के लिए आवश्यक विलंब (डिफ़ॉल्ट: 1500ms)"
+    },
+    "deeplDelayLabel": { "message": "DeepL API अनुरोध विलंब (ms):" },
+    "deeplDelayHelp": {
+        "message": "DeepL API अनुरोधों के लिए विलंब (डिफ़ॉल्ट: 500ms)"
+    },
+    "deeplFreeDelayLabel": { "message": "DeepL निःशुल्क अनुरोध विलंब (ms):" },
+    "deeplFreeDelayHelp": {
+        "message": "निःशुल्क स्तर के लिए सावधानीपूर्ण विलंब (डिफ़ॉल्ट: 2000ms)"
+    },
+    "microsoftDelayLabel": {
+        "message": "Microsoft अनुवाद अनुरोध विलंब (ms):"
+    },
+    "microsoftDelayHelp": {
+        "message": "अक्षर सीमाओं का सम्मान करने के लिए विलंब (डिफ़ॉल्ट: 800ms)"
+    },
+    "vertexDelayLabel": {
+        "message": "Vertex AI अनुरोध विलंब (ms):"
+    },
+    "vertexDelayHelp": {
+        "message": "अनुरोधों के बीच न्यूनतम विलंब (डिफ़ॉल्ट: 100ms)"
+    },
+
+    "aiContextModalTitle": { "message": "AI संदर्भ विश्लेषण" },
+    "aiContextSelectedWords": { "message": "चयनित शब्द" },
+    "aiContextNoWordsSelected": { "message": "कोई शब्द चयनित नहीं" },
+    "aiContextClickHint": { "message": "💡 जोड़ने या हटाने के लिए किसी शब्द पर क्लिक करें।" },
+    "aiContextStartAnalysis": { "message": "विश्लेषण शुरू करें" },
+    "aiContextPauseAnalysis": { "message": "⏸ विराम" },
+    "aiContextPauseAnalysisTitle": { "message": "विश्लेषण रोकें" },
+    "aiContextInitialMessage": {
+        "message": "विश्लेषण शुरू करने हेतु उपशीर्षकों से शब्द चुनें।"
+    },
+    "aiContextAnalyzing": { "message": "संदर्भ का विश्लेषण हो रहा है..." },
+    "aiContextPauseNote": { "message": "विश्लेषण रोकने हेतु ⏸ पर क्लिक करें" },
+    "aiContextAnalysisFailed": { "message": "विश्लेषण विफल" },
+    "aiContextNoContent": { "message": "कोई विश्लेषण सामग्री नहीं" },
+    "aiContextNoContentMessage": {
+        "message": "विश्लेषण पूरा हुआ, पर कोई सामग्री प्राप्त नहीं हुई।"
+    },
+    "aiContextDefinition": { "message": "📖 परिभाषा" },
+    "aiContextCultural": { "message": "🌍 सांस्कृतिक संदर्भ" },
+    "aiContextCulturalSignificance": { "message": "⭐ सांस्कृतिक महत्व" },
+    "aiContextHistorical": { "message": "📜 ऐतिहासिक संदर्भ" },
+    "aiContextHistoricalSignificance": {
+        "message": "📜 ऐतिहासिक महत्व"
     }
+
 
 
 }
