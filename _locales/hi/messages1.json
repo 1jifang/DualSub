@@ -1,0 +1,114 @@
+{
+    "appName": { "message": "DualSub" },
+    "appDesc": {
+        "message": "स्ट्रीमिंग प्लेटफॉर्म पर दो भाषाओं के उपशीर्षक दिखाता है।"
+    },
+    "pageTitle": { "message": "DualSub सेटिंग्स" },
+    "h1Title": { "message": "DualSub" },
+    "enableSubtitlesLabel": { "message": "दोहरी उपशीर्षक सक्षम करें:" },
+    "useNativeSubtitlesLabel": { "message": "आधिकारिक उपशीर्षक उपयोग करें:" },
+    "originalLanguageLabel": { "message": "भाषा सेट:" },
+    "translationSettingsLegend": { "message": "अनुवाद सेटिंग्स" },
+    "providerLabel": { "message": "प्रदाता:" },
+    "targetLanguageLabel": { "message": "अनुवाद भाषा:" },
+    "batchSizeLabel": { "message": "बैच आकार:" },
+    "requestDelayLabel": { "message": "रिक्वेस्ट विलंब (ms):" },
+    "subtitleAppearanceTimingLegend": {
+        "message": "उपशीर्षक दृश्यता व समय"
+    },
+    "displayOrderLabel": { "message": "प्रदर्शन क्रम:" },
+    "layoutLabel": { "message": "लेआउट:" },
+    "fontSizeLabel": { "message": "फ़ॉन्ट आकार:" },
+    "verticalGapLabel": { "message": "ऊर्ध्वाधर अंतर:" },
+    "subtitleVerticalPositionLabel": { "message": "ऊर्ध्वाधर स्थिति:" },
+    "timeOffsetLabel": { "message": "समय ऑफ़सेट (से.):" },
+    "displayOrderOriginalFirst": { "message": "मूल पहले" },
+    "displayOrderTranslationFirst": { "message": "अनुवाद पहले" },
+    "layoutTopBottom": { "message": "ऊपर / नीचे" },
+    "layoutLeftRight": { "message": "बाएँ / दाएँ" },
+    "uiLanguageLabel": { "message": "भाषा:" },
+    "openOptionsButton": { "message": "उन्नत सेटिंग्स" },
+    "statusLanguageSetTo": { "message": "भाषा सेट (पृष्ठ रिफ्रेश करें): " },
+    "statusDualEnabled": {
+        "message": "दोहरी उपशीर्षक सक्षम। (पृष्ठ रिफ्रेश करें)"
+    },
+    "statusDualDisabled": {
+        "message": "दोहरी उपशीर्षक अक्षम। (पृष्ठ रिफ्रेश करें)"
+    },
+    "statusSmartTranslationEnabled": {
+        "message": "स्मार्ट अनुवाद सक्षम। (पृष्ठ रिफ्रेश करें)"
+    },
+    "statusSmartTranslationDisabled": {
+        "message": "स्मार्ट अनुवाद अक्षम। (पृष्ठ रिफ्रेश करें)"
+    },
+    "statusOriginalLanguage": { "message": "भाषा सेट (पृष्ठ रिफ्रेश करें): " },
+    "statusTimeOffset": { "message": "समय ऑफ़सेट: " },
+    "statusDisplayOrderUpdated": { "message": "प्रदर्शन क्रम अपडेट हुआ।" },
+    "statusLayoutOrientationUpdated": {
+        "message": "लेआउट उन्मुखीकरण अपडेट हुआ।"
+    },
+    "statusFontSize": { "message": "फ़ॉन्ट आकार: " },
+    "statusVerticalGap": { "message": "ऊर्ध्वाधर अंतर: " },
+    "statusVerticalPosition": { "message": "ऊर्ध्वाधर स्थिति: " },
+    "statusInvalidOffset": { "message": "अमान्य ऑफ़सेट, पूर्व स्थिति पर लौटाया गया।" },
+    "statusSettingNotApplied": {
+        "message": "सेटिंग लागू नहीं हुई। पृष्ठ रिफ्रेश करें।"
+    },
+
+    "optionsPageTitle": { "message": "DualSub विकल्प" },
+    "optionsH1Title": { "message": "DualSub" },
+    "navGeneral": { "message": "सामान्य" },
+    "navTranslation": { "message": "अनुवाद" },
+    "navProviders": { "message": "प्रदाता" },
+    "navAbout": { "message": "परिचय" },
+    "sectionGeneral": { "message": "सामान्य" },
+    "cardUILanguageTitle": { "message": "UI भाषा" },
+    "cardUILanguageDesc": {
+        "message": "एक्सटेंशन के इंटरफ़ेस की प्रदर्शन भाषा चुनें।"
+    },
+    "cardHideOfficialSubtitlesTitle": { "message": "आधिकारिक उपशीर्षक छिपाएँ" },
+    "cardHideOfficialSubtitlesDesc": {
+        "message": "DualSub सक्रिय होने पर वीडियो प्लेटफॉर्म के आधिकारिक उपशीर्षक छिपाएँ।"
+    },
+    "hideOfficialSubtitlesLabel": { "message": "आधिकारिक उपशीर्षक छिपाएँ:" },
+    "sectionTranslation": { "message": "अनुवाद" },
+    "cardTranslationEngineTitle": { "message": "अनुवाद इंजन" },
+    "cardTranslationEngineDesc": {
+        "message": "अपनी पसंदीदा अनुवाद सेवा चुनें।"
+    },
+    "cardPerformanceTitle": { "message": "प्रदर्शन" },
+    "cardPerformanceDesc": {
+        "message": "गति और स्थिरता के संतुलन हेतु अनुवाद अनुरोधों का प्रबंधन समायोजित करें।"
+    },
+    "sectionProviders": { "message": "प्रदाता सेटिंग्स" },
+    "cardDeepLTitle": { "message": "DeepL" },
+    "cardDeepLDesc": {
+        "message": "DeepL अनुवाद के लिए अपना API कुंजी दर्ज करें। Free या Pro योजना चुनें।"
+    },
+    "apiKeyLabel": { "message": "API कुंजी:" },
+    "apiPlanLabel": { "message": "API योजना:" },
+    "apiPlanFree": { "message": "DeepL API Free" },
+    "apiPlanPro": { "message": "DeepL API Pro" },
+    "sectionAbout": { "message": "परिचय" },
+    "cardAboutTitle": { "message": "DualSub" },
+    "aboutVersion": { "message": "संस्करण" },
+    "aboutDescription": {
+        "message": "यह एक्सटेंशन विभिन्न प्लेटफॉर्म पर दो भाषाओं के उपशीर्षकों के साथ वीडियो देखने में मदद करता है।"
+    },
+    "aboutDevelopment": { "message": "QuellaMC और 1jifang द्वारा विकसित।" },
+
+    "lang_en": { "message": "अंग्रेज़ी" },
+    "lang_es": { "message": "स्पैनिश" },
+    "lang_fr": { "message": "फ़्रेंच" },
+    "lang_de": { "message": "जर्मन" },
+    "lang_it": { "message": "इतालवी" },
+    "lang_pt": { "message": "पुर्तगाली" },
+    "lang_ja": { "message": "जापानी" },
+    "lang_ko": { "message": "कोरियाई" },
+    "lang_zh_CN": { "message": "चीनी (सरल)" },
+    "lang_zh_TW": { "message": "चीनी (परंपरागत)" },
+    "lang_ru": { "message": "रूसी" },
+    "lang_ar": { "message": "अरबी" },
+    "lang_hi": { "message": "हिन्दी" }
+
+}
