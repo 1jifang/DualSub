@@ -1,0 +1,89 @@
+{
+    "appName": { "message": "DualSub" },
+    "appDesc": {
+        "message": "يعرض ترجمات بلغتين على منصات البث."
+    },
+    "pageTitle": { "message": "إعدادات DualSub" },
+    "h1Title": { "message": "DualSub" },
+    "enableSubtitlesLabel": { "message": "تفعيل الترجمات المزدوجة:" },
+    "useNativeSubtitlesLabel": { "message": "استخدام الترجمات الرسمية:" },
+    "originalLanguageLabel": { "message": "ضبط اللغة:" },
+    "translationSettingsLegend": { "message": "إعدادات الترجمة" },
+    "providerLabel": { "message": "المزوّد:" },
+    "targetLanguageLabel": { "message": "الترجمة إلى:" },
+    "batchSizeLabel": { "message": "حجم الدُفعة:" },
+    "requestDelayLabel": { "message": "تأخير الطلب (مللي ثانية):" },
+    "subtitleAppearanceTimingLegend": {
+        "message": "مظهر وتوقيت الترجمة"
+    },
+    "displayOrderLabel": { "message": "ترتيب العرض:" },
+    "layoutLabel": { "message": "التخطيط:" },
+    "fontSizeLabel": { "message": "حجم الخط:" },
+    "verticalGapLabel": { "message": "الفاصل العمودي:" },
+    "subtitleVerticalPositionLabel": { "message": "الموضع العمودي:" },
+    "timeOffsetLabel": { "message": "إزاحة الوقت (ثوانٍ):" },
+    "displayOrderOriginalFirst": { "message": "الأصل أولاً" },
+    "displayOrderTranslationFirst": { "message": "الترجمة أولاً" },
+    "layoutTopBottom": { "message": "أعلى / أسفل" },
+    "layoutLeftRight": { "message": "يسار / يمين" },
+    "uiLanguageLabel": { "message": "اللغة:" },
+    "openOptionsButton": { "message": "إعدادات متقدمة" },
+    "statusLanguageSetTo": { "message": "تم ضبط اللغة (حدّث الصفحة): " },
+    "statusDualEnabled": {
+        "message": "تم تفعيل الترجمات المزدوجة. (حدّث الصفحة)"
+    },
+    "statusDualDisabled": {
+        "message": "تم تعطيل الترجمات المزدوجة. (حدّث الصفحة)"
+    },
+    "statusSmartTranslationEnabled": {
+        "message": "تم تفعيل الترجمة الذكية. (حدّث الصفحة)"
+    },
+    "statusSmartTranslationDisabled": {
+        "message": "تم تعطيل الترجمة الذكية. (حدّث الصفحة)"
+    },
+    "statusOriginalLanguage": { "message": "تم ضبط اللغة (حدّث الصفحة): " },
+    "statusTimeOffset": { "message": "إزاحة الوقت: " },
+    "statusDisplayOrderUpdated": { "message": "تم تحديث ترتيب العرض." },
+    "statusLayoutOrientationUpdated": {
+        "message": "تم تحديث اتجاه التخطيط."
+    },
+    "statusFontSize": { "message": "حجم الخط: " },
+    "statusVerticalGap": { "message": "الفاصل العمودي: " },
+    "statusVerticalPosition": { "message": "الموضع العمودي: " },
+    "statusInvalidOffset": { "message": "إزاحة غير صالحة، سيتم الرجوع." },
+    "statusSettingNotApplied": {
+        "message": "لم يتم تطبيق الإعداد. حدّث الصفحة."
+    },
+
+    "optionsPageTitle": { "message": "خيارات DualSub" },
+    "optionsH1Title": { "message": "DualSub" },
+    "navGeneral": { "message": "عام" },
+    "navTranslation": { "message": "الترجمة" },
+    "navProviders": { "message": "المزوّدون" },
+    "navAbout": { "message": "نبذة" },
+    "sectionGeneral": { "message": "عام" },
+    "cardUILanguageTitle": { "message": "لغة الواجهة" },
+    "cardUILanguageDesc": {
+        "message": "اختر لغة عرض واجهة الإضافة."
+    },
+    "cardHideOfficialSubtitlesTitle": { "message": "إخفاء الترجمات الرسمية" },
+    "cardHideOfficialSubtitlesDesc": {
+        "message": "إخفاء ترجمات المنصة الرسمية عند تفعيل DualSub."
+    },
+    "hideOfficialSubtitlesLabel": { "message": "إخفاء الترجمات الرسمية:" },
+    "sectionTranslation": { "message": "الترجمة" },
+    "cardTranslationEngineTitle": { "message": "محرك الترجمة" },
+    "cardTranslationEngineDesc": {
+        "message": "اختر خدمة الترجمة المفضلة لديك."
+    },
+    "cardPerformanceTitle": { "message": "الأداء" },
+    "cardPerformanceDesc": {
+        "message": "اضبط كيفية تعامل الإضافة مع طلبات الترجمة لتحقيق توازن بين السرعة والاستقرار."
+    },
+    "sectionProviders": { "message": "إعدادات المزوّد" },
+    "cardDeepLTitle": { "message": "DeepL" },
+    "cardDeepLDesc": {
+        "message": "أدخل مفتاح API لخدمة DeepL. اختر بين خُطة Free أو Pro."
+    }
+}
+

@@ -267,6 +267,9 @@ class MessageHandler {
                 options: {
                     cueStart: message.cueStart,
                     cueVideoId: message.cueVideoId,
+                    urgent: message.urgent === true,
+                    skipMandatoryDelay: message.skipMandatoryDelay === true || message.urgent === true,
+                    skipRateLimit: message.skipRateLimit === true,
                 },
             }
         );
@@ -292,7 +295,10 @@ class MessageHandler {
         const { text, targetLang, cueStart, cueVideoId } = message;
 
         this.translationService
-            .translate(text, 'auto', targetLang)
+            .translate(text, 'auto', targetLang, {
+                skipMandatoryDelay: message.skipMandatoryDelay === true || message.urgent === true,
+                skipRateLimit: message.skipRateLimit === true,
+            })
             .then((translatedText) => {
                 const response = ServiceProtocol.createResponse(request, {
                     translatedText,
