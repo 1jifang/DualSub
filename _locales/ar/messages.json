@@ -267,6 +267,85 @@
     "cardLoggingLevelTitle": { "message": "مستوى التسجيل" },
     "cardLoggingLevelDesc": {
         "message": "تحكّم في كمية معلومات التصحيح المعروضة في وحدة تحكم المتصفح. المستويات الأعلى تتضمن جميع المستويات الأدنى."
+    },
+    "loggingLevelLabel": { "message": "مستوى التسجيل:" },
+    "loggingLevelOff": { "message": "إيقاف" },
+    "loggingLevelError": { "message": "أخطاء فقط" },
+    "loggingLevelWarn": { "message": "تحذيرات وأخطاء" },
+    "loggingLevelInfo": { "message": "معلومات وما فوق" },
+    "loggingLevelDebug": { "message": "تصحيح (الكل)" },
+
+    "cardBatchTranslationTitle": { "message": "الترجمة على دفعات" },
+    "cardBatchTranslationDesc": {
+        "message": "تقوم الترجمة على دفعات بمعالجة عدة مقاطع ترجمة معًا، ما يقلل مكالمات API بنسبة 80–90% ويحسن الأداء. اضبط الإعدادات المثلى لمزوّد الترجمة المفضل لديك."
+    },
+    "batchingEnabledLabel": { "message": "تفعيل الترجمة على دفعات:" },
+    "batchingEnabledHelp": {
+        "message": "يجمع عدة مقاطع ترجمة في طلبات ترجمة واحدة"
+    },
+    "useProviderDefaultsLabel": {
+        "message": "استخدام إعدادات المزوّد المحسّنة:"
+    },
+    "useProviderDefaultsHelp": {
+        "message": "استخدم تلقائيًا أحجام الدُفعات المثلى لكل مزوّد"
+    },
+    "globalBatchSizeLabel": { "message": "حجم الدُفعة العام:" },
+    "globalBatchSizeHelp": {
+        "message": "عدد مقاطع الترجمة لمعالجتها معًا (1–15)"
+    },
+    "smartBatchingLabel": { "message": "تحسين الدُفعات الذكي:" },
+    "smartBatchingHelp": {
+        "message": "يُعطي الأولوية لمقاطع الترجمة بناءً على موضع التشغيل"
+    },
+    "maxConcurrentBatchesLabel": { "message": "أقصى عدد للدُفعات المتزامنة:" },
+    "maxConcurrentBatchesHelp": {
+        "message": "عدد دُفعات الترجمة التي تتم معالجتها في الوقت نفسه"
+    },
+
+    "cardProviderBatchTitle": { "message": "أحجام الدُفعات حسب المزوّد" },
+    "cardProviderBatchDesc": {
+        "message": "اضبط أحجام الدُفعات المثلى لكل مزوّد ترجمة. تُستخدم هذه الإعدادات عند تفعيل \"استخدام إعدادات المزوّد المحسّنة\"."
+    },
+    "openaieBatchSizeLabel": { "message": "حجم دفعة OpenAI:" },
+    "openaieBatchSizeHelp": {
+        "message": "مُوصى به: 5–10 مقاطع (الافتراضي: 8)"
+    },
+    "googleBatchSizeLabel": { "message": "حجم دفعة Google Translate:" },
+    "googleBatchSizeHelp": {
+        "message": "مُوصى به: 3–5 مقاطع (الافتراضي: 4)"
+    },
+    "deeplBatchSizeLabel": { "message": "حجم دفعة DeepL:" },
+    "deeplBatchSizeHelp": {
+        "message": "مُوصى به: 2–3 مقاطع (الافتراضي: 3)"
+    },
+    "microsoftBatchSizeLabel": { "message": "حجم دفعة Microsoft Translate:" },
+    "microsoftBatchSizeHelp": {
+        "message": "مُوصى به: 3–5 مقاطع (الافتراضي: 4)"
+    },
+    "vertexBatchSizeLabel": { "message": "حجم دفعة Vertex AI:" },
+    "vertexBatchSizeHelp": {
+        "message": "مُوصى به: 5–10 مقاطع (الافتراضي: 8)"
+    },
+
+    "cardProviderDelayTitle": { "message": "تأخيرات الطلب حسب المزوّد" },
+    "cardProviderDelayDesc": {
+        "message": "اضبط التأخيرات الإلزامية بين طلبات الترجمة لمنع حظر الحساب. تُطبّق هذه التأخيرات حتى عند تفعيل المعالجة على دفعات."
+    },
+    "openaieDelayLabel": { "message": "تأخير طلب OpenAI (مللي ثانية):" },
+    "openaieDelayHelp": {
+        "message": "الحد الأدنى للتأخير بين الطلبات (الافتراضي: 100 مللي ثانية)"
+    },
+    "googleDelayLabel": { "message": "تأخير طلب Google Translate (مللي ثانية):" },
+    "googleDelayHelp": {
+        "message": "تأخير مطلوب لمنع قفل مؤقت (الافتراضي: 1500 مللي ثانية)"
+    },
+    "deeplDelayLabel": { "message": "تأخير طلب واجهة DeepL (مللي ثانية):" },
+    "deeplDelayHelp": {
+        "message": "تأخير لطلبات واجهة DeepL (الافتراضي: 500 مللي ثانية)"
+    },
+    "deeplFreeDelayLabel": { "message": "تأخير طلب DeepL المجاني (مللي ثانية):" },
+    "deeplFreeDelayHelp": {
+        "message": "تأخير متحفظ للنسخة المجانية (الافتراضي: 2000 مللي ثانية)"
     }
 }
 
