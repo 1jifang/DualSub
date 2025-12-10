@@ -174,6 +174,99 @@
     "noteAutoFallback": {
         "message": "الرجوع التلقائي إلى خدمات بديلة"
     },
-    "noteRecommendedDefault": { "message": "موصى به كمزوّد افتراضي" }
+    "noteRecommendedDefault": { "message": "موصى به كمزوّد افتراضي" },
+    "providerGoogleName": { "message": "Google ترجمة (مجاني)" },
+    "providerMicrosoftName": { "message": "Microsoft ترجمة (مجاني)" },
+    "providerDeepLName": { "message": "DeepL (يتطلب مفتاح API)" },
+    "providerDeepLFreeName": { "message": "DeepL ترجمة (مجاني)" },
+    "providerOpenAICompatibleName": {
+        "message": "متوافق مع OpenAI (يتطلب مفتاح API)"
+    },
+    "providerVertexGeminiName": {
+        "message": "Vertex AI Gemini (يتطلب مفتاح API)"
+    },
+    "cardOpenAICompatibleTitle": {
+        "message": "متوافق مع OpenAI (يتطلب مفتاح API)"
+    },
+    "cardOpenAICompatibleDesc": {
+        "message": "أدخل مفتاح API وإعدادات الخدمات المتوافقة مع OpenAI مثل Gemini."
+    },
+    "cardVertexGeminiTitle": {
+        "message": "Vertex AI Gemini (يتطلب مفتاح API)"
+    },
+    "cardVertexGeminiDesc": {
+        "message": "أدخل رمز الوصول وإعدادات مشروع Vertex."
+    },
+    "vertexAccessTokenLabel": { "message": "رمز الوصول:" },
+    "vertexProjectIdLabel": { "message": "معرّف المشروع:" },
+    "vertexLocationLabel": { "message": "الموقع:" },
+    "vertexModelLabel": { "message": "النموذج:" },
+    "vertexMissingConfig": {
+        "message": "يرجى إدخال رمز الوصول ومعرّف المشروع."
+    },
+    "vertexConnectionFailed": { "message": "فشل الاتصال: %s" },
+    "vertexServiceAccountLabel": { "message": "ملف خدمة الحساب JSON:" },
+    "vertexImportButton": { "message": "استيراد ملف JSON" },
+    "vertexRefreshButton": { "message": "🔄 تحديث الرمز" },
+    "vertexImportHint": { "message": "يملأ بيانات الاعتماد أدناه تلقائياً" },
+    "vertexImporting": { "message": "جارٍ الاستيراد..." },
+    "vertexRefreshingToken": { "message": "جارٍ تحديث رمز الوصول..." },
+    "vertexGeneratingToken": { "message": "جارٍ إنشاء رمز الوصول..." },
+    "vertexImportSuccess": {
+        "message": "تم استيراد حساب الخدمة وإنشاء الرمز."
+    },
+    "vertexImportFailed": { "message": "فشل الاستيراد: %s" },
+    "vertexTokenRefreshed": {
+        "message": "تم تحديث رمز الوصول بنجاح."
+    },
+    "vertexRefreshFailed": { "message": "فشل تحديث الرمز: %s" },
+    "vertexTokenExpired": {
+        "message": "⚠️ انتهت صلاحية رمز الوصول. انقر تحديث للتجديد."
+    },
+    "vertexTokenExpiringSoon": {
+        "message": "⚠️ تنتهي صلاحية الرمز خلال %s دقيقة. فكّر في تحديثه."
+    },
+    "vertexConfigured": {
+        "message": "⚠️ تم إعداد Vertex AI. يرجى اختبار الاتصال."
+    },
+    "vertexNotConfigured": {
+        "message": "يرجى استيراد ملف حساب الخدمة JSON أو إدخال بيانات الاعتماد."
+    },
+    "featureVertexServiceAccount": { "message": "استيراد JSON لحساب الخدمة" },
+    "featureVertexAutoToken": { "message": "إنشاء رمز تلقائي" },
+    "featureVertexGemini": { "message": "نماذج Google Gemini عبر Vertex AI" },
+    "providerNote": { "message": "ملاحظة:" },
+    "vertexNote": {
+        "message": "تنتهي صلاحية رموز الوصول بعد ساعة واحدة. يتم تخزين حساب الخدمة لديك بأمان لتسهيل تحديث الرمز — ما عليك سوى النقر على زر تحديث الرمز عند الحاجة."
+    },
+    "baseUrlLabel": { "message": "عنوان الأساس (Base URL):" },
+    "modelLabel": { "message": "النموذج:" },
+    "featureCustomizable": { "message": "نقطة نهاية ونموذج قابلان للتخصيص" },
+    "fetchModelsButton": { "message": "جلب النماذج" },
+    "testConnectionButton": { "message": "اختبار الاتصال" },
+    "openaiApiKeyPlaceholder": {
+        "message": "أدخل مفتاح API المتوافق مع OpenAI"
+    },
+    "openaiBaseUrlPlaceholder": {
+        "message": "مثال: https://api.openai.com/v1"
+    },
+    "openaiApiKeyError": { "message": "يرجى إدخال مفتاح API أولاً." },
+    "openaiApiKeyNeedsTesting": { "message": "⚠️ يحتاج مفتاح API إلى الاختبار." },
+    "openaiTestNeedsTesting": {
+        "message": "⚠️ يحتاج مفتاح API المتوافق مع OpenAI إلى الاختبار."
+    },
+    "openaiTestingConnection": { "message": "جارٍ اختبار الاتصال..." },
+    "openaiConnectionSuccessful": { "message": "تم الاتصال بنجاح!" },
+    "openaiConnectionFailed": { "message": "فشل الاتصال: %s" },
+    "openaieFetchingModels": { "message": "جارٍ جلب النماذج..." },
+    "openaiModelsFetchedSuccessfully": {
+        "message": "تم جلب النماذج بنجاح."
+    },
+    "openaiFailedToFetchModels": { "message": "فشل جلب النماذج: %s" },
+
+    "cardLoggingLevelTitle": { "message": "مستوى التسجيل" },
+    "cardLoggingLevelDesc": {
+        "message": "تحكّم في كمية معلومات التصحيح المعروضة في وحدة تحكم المتصفح. المستويات الأعلى تتضمن جميع المستويات الأدنى."
+    }
 }
 
