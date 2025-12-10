@@ -409,6 +409,48 @@
     },
     "aiContextJsonCodeBlock": {
         "message": "Der KI-Dienst hat unbearbeiteten JSON-Code anstelle von strukturierten Daten zurückgegeben. Dies deutet auf einen Formatierungsfehler in der Antwort hin."
+    },
+    "aiContextCulturalContext": { "message": "Kultureller Kontext:" },
+    "aiContextSocialUsage": { "message": "Soziale Verwendung:" },
+    "aiContextRegionalNotes": { "message": "Regionale Hinweise:" },
+    "aiContextOrigins": { "message": "Ursprünge:" },
+    "aiContextHistoricalContext": { "message": "Historischer Kontext:" },
+    "aiContextHistoricalSignificance": {
+        "message": "Historische Bedeutung:"
+    },
+    "aiContextEvolution": { "message": "Entwicklung:" },
+    "aiContextEtymology": { "message": "Etymologie:" },
+    "aiContextGrammarNotes": { "message": "Grammatik-Hinweise:" },
+    "aiContextTranslationNotes": { "message": "Übersetzungshinweise:" },
+    "aiContextLinguisticAnalysis": { "message": "Linguistische Analyse:" },
+    "aiContextGrammarSemantics": { "message": "Grammatik & Semantik:" },
+    "aiContextUsageExamples": { "message": "Verwendung & Beispiele:" },
+    "aiContextLearningTips": { "message": "Lerntipps:" },
+    "aiContextRelatedExpressions": { "message": "Verwandte Ausdrücke:" },
+    "aiContextKeyInsights": { "message": "Wichtige Erkenntnisse:" },
+
+    "navAIContext": { "message": "AI-Kontext" },
+    "sectionAIContext": { "message": "AI-Kontext-Assistent" },
+    "cardAIContextToggleTitle": { "message": "AI-Kontextanalyse aktivieren" },
+    "cardAIContextToggleDesc": {
+        "message": "Aktivieren Sie die KI-gestützte Analyse von kulturellem, historischem und sprachlichem Kontext für Untertiteltexte. Klicken Sie auf Wörter oder Phrasen in Untertiteln, um detaillierte Erklärungen zu erhalten."
+    },
+    "aiContextEnabledLabel": { "message": "AI-Kontext aktivieren:" },
+    "cardAIContextProviderTitle": { "message": "AI-Anbieter" },
+    "cardAIContextProviderDesc": {
+        "message": "Wählen Sie den KI-Dienstanbieter für die Kontextanalyse. Verschiedene Anbieter können unterschiedliche Qualität und Antwortzeiten bieten."
+    },
+    "aiContextProviderLabel": { "message": "Anbieter:" },
+    "cardOpenAIContextTitle": { "message": "OpenAI Konfiguration" },
+    "cardOpenAIContextDesc": {
+        "message": "Konfigurieren Sie Ihre OpenAI API-Einstellungen für die Kontextanalyse. Sie benötigen einen gültigen OpenAI API-Schlüssel."
+    },
+    "openaiApiKeyLabel": { "message": "API-Schlüssel:" },
+    "openaiBaseUrlLabel": { "message": "Basis-URL:" },
+    "openaiModelLabel": { "message": "Modell:" },
+    "cardGeminiContextTitle": { "message": "Google Gemini Konfiguration" },
+    "cardGeminiContextDesc": {
+        "message": "Konfigurieren Sie Ihre Google Gemini API-Einstellungen für die Kontextanalyse. Sie benötigen einen gültigen Gemini API-Schlüssel."
     }
 }
     
