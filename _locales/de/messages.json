@@ -181,6 +181,85 @@
     "providerDeepLFreeName": { "message": "DeepL Translate (Kostenlos)" },
     "providerOpenAICompatibleName": {
         "message": "OpenAI Kompatibel (API-Schlüssel erforderlich)"
-    }
+    },
+    "apiKeyLabel": { "message": "API-Schlüssel:" },
+    
+    "providerVertexGeminiName": {
+        "message": "Vertex AI Gemini (API-Schlüssel erforderlich)"
+    },
+    "cardOpenAICompatibleTitle": {
+        "message": "OpenAI Kompatibel (API-Schlüssel erforderlich)"
+    },
+    "cardOpenAICompatibleDesc": {
+        "message": "Geben Sie Ihren API-Schlüssel und Einstellungen für OpenAI-kompatible Dienste wie Gemini ein."
+    },
+    "cardVertexGeminiTitle": {
+        "message": "Vertex AI Gemini (API-Schlüssel erforderlich)"
+    },
+    "cardVertexGeminiDesc": {
+        "message": "Geben Sie Ihr Zugriffstoken und die Vertex-Projekteinstellungen ein."
+    },
+    "vertexAccessTokenLabel": { "message": "Zugriffstoken:" },
+    "vertexProjectIdLabel": { "message": "Projekt-ID:" },
+    "vertexLocationLabel": { "message": "Standort:" },
+    "vertexModelLabel": { "message": "Modell:" },
+    "vertexMissingConfig": {
+        "message": "Bitte geben Sie Zugriffstoken und Projekt-ID ein."
+    },
+    "vertexConnectionFailed": { "message": "Verbindung fehlgeschlagen: %s" },
+    "vertexServiceAccountLabel": { "message": "Service Account JSON:" },
+    "vertexImportButton": { "message": "JSON-Datei importieren" },
+    "vertexRefreshButton": { "message": "🔄 Token aktualisieren" },
+    "vertexImportHint": { "message": "Füllt Anmeldeinformationen unten automatisch aus" },
+    "vertexImporting": { "message": "Importiere..." },
+    "vertexRefreshingToken": { "message": "Aktualisiere Zugriffstoken..." },
+    "vertexGeneratingToken": { "message": "Generiere Zugriffstoken..." },
+    "vertexImportSuccess": {
+        "message": "Service Account importiert und Token generiert."
+    },
+    "vertexImportFailed": { "message": "Import fehlgeschlagen: %s" },
+    "vertexTokenRefreshed": {
+        "message": "Zugriffstoken erfolgreich aktualisiert."
+    },
+    "vertexRefreshFailed": { "message": "Token-Aktualisierung fehlgeschlagen: %s" },
+    "vertexTokenExpired": {
+        "message": "⚠️ Zugriffstoken abgelaufen. Klicken Sie auf Aktualisieren, um zu erneuern."
+    },
+    "vertexTokenExpiringSoon": {
+        "message": "⚠️ Token läuft in %s Minuten ab. Erwägen Sie eine Aktualisierung."
+    },
+    "vertexConfigured": {
+        "message": "⚠️ Vertex AI konfiguriert. Bitte Verbindung testen."
+    },
+    "vertexNotConfigured": {
+        "message": "Bitte importieren Sie die Service Account JSON oder geben Sie die Anmeldeinformationen ein."
+    },
+    "featureVertexServiceAccount": { "message": "Service Account JSON Import" },
+    "featureVertexAutoToken": { "message": "Automatische Token-Generierung" },
+    "featureVertexGemini": { "message": "Google Gemini Modelle via Vertex AI" },
+    "providerNote": { "message": "Hinweis:" },
+    "vertexNote": {
+        "message": "Zugriffstoken laufen nach 1 Stunde ab. Ihr Service Account wird sicher gespeichert für einfache Token-Aktualisierung - klicken Sie einfach auf 'Token aktualisieren' bei Bedarf."
+    },
+    "baseUrlLabel": { "message": "Basis-URL:" },
+    "modelLabel": { "message": "Modell:" },
+    "featureCustomizable": { "message": "Anpassbarer Endpunkt und Modell" },
+    "fetchModelsButton": { "message": "Modelle abrufen" },
+    "testConnectionButton": { "message": "Verbindung testen" },
+    "openaiApiKeyPlaceholder": {
+        "message": "Geben Sie Ihren OpenAI-kompatiblen API-Schlüssel ein"
+    },
+    "openaiBaseUrlPlaceholder": {
+        "message": "z.B. https://api.openai.com/v1"
+    },
+    "openaiApiKeyError": { "message": "Bitte geben Sie zuerst Ihren API-Schlüssel ein." },
+    "openaiApiKeyNeedsTesting": { "message": "⚠️ API-Schlüssel muss getestet werden." },
+    "openaiTestNeedsTesting": {
+        "message": "⚠️ OpenAI-kompatibler API-Schlüssel muss getestet werden."
+    },
+    "openaiTestingConnection": { "message": "Teste Verbindung..." },
+    "openaiConnectionSuccessful": { "message": "Verbindung erfolgreich!" },
+    "openaiConnectionFailed": { "message": "Verbindung fehlgeschlagen: %s" },
+    "openaieFetchingModels": { "message": "Rufe Modelle ab..." }
 }
     
