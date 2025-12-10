@@ -346,6 +346,85 @@
     "deeplFreeDelayLabel": { "message": "تأخير طلب DeepL المجاني (مللي ثانية):" },
     "deeplFreeDelayHelp": {
         "message": "تأخير متحفظ للنسخة المجانية (الافتراضي: 2000 مللي ثانية)"
-    }
+    },
+    "microsoftDelayLabel": {
+        "message": "تأخير طلب Microsoft Translate (مللي ثانية):"
+    },
+    "microsoftDelayHelp": {
+        "message": "تأخير لاحترام حدود الأحرف (الافتراضي: 800 مللي ثانية)"
+    },
+    "vertexDelayLabel": {
+        "message": "تأخير طلب Vertex AI (مللي ثانية):"
+    },
+    "vertexDelayHelp": {
+        "message": "الحد الأدنى للتأخير بين الطلبات (الافتراضي: 100 مللي ثانية)"
+    },
+
+    "aiContextModalTitle": { "message": "تحليل سياق الذكاء الاصطناعي" },
+    "aiContextSelectedWords": { "message": "الكلمات المحددة" },
+    "aiContextNoWordsSelected": { "message": "لم يتم تحديد كلمات" },
+    "aiContextClickHint": { "message": "💡 انقر على كلمة لإضافتها أو إزالتها." },
+    "aiContextStartAnalysis": { "message": "بدء التحليل" },
+    "aiContextPauseAnalysis": { "message": "⏸ إيقاف مؤقت" },
+    "aiContextPauseAnalysisTitle": { "message": "إيقاف التحليل مؤقتًا" },
+    "aiContextInitialMessage": {
+        "message": "اختر كلمات من الترجمات لبدء التحليل."
+    },
+    "aiContextAnalyzing": { "message": "جارٍ تحليل السياق..." },
+    "aiContextPauseNote": { "message": "انقر ⏸ لإيقاف التحليل مؤقتًا" },
+    "aiContextAnalysisFailed": { "message": "فشل التحليل" },
+    "aiContextNoContent": { "message": "لا توجد محتويات تحليل" },
+    "aiContextNoContentMessage": {
+        "message": "اكتمل التحليل لكن لم يتم إرجاع أي محتوى."
+    },
+    "aiContextDefinition": { "message": "📖 تعريف" },
+    "aiContextCultural": { "message": "🌍 السياق الثقافي" },
+    "aiContextCulturalSignificance": { "message": "⭐ الأهمية الثقافية" },
+    "aiContextHistorical": { "message": "📜 السياق التاريخي" },
+    "aiContextHistoricalSignificance": {
+        "message": "📜 الأهمية التاريخية"
+    },
+    "aiContextEvolution": { "message": "🔄 التطور عبر الزمن" },
+    "aiContextLinguistic": { "message": "🔤 التحليل اللغوي" },
+    "aiContextGrammar": { "message": "📝 النحو والدلالة" },
+    "aiContextUsage": { "message": "💡 الاستعمال والأمثلة" },
+    "aiContextExamples": { "message": "أمثلة:" },
+    "aiContextLearningTips": { "message": "🎯 نصائح للتعلم" },
+    "aiContextRelatedExpressions": { "message": "🔗 تعابير ذات صلة" },
+    "aiContextKeyInsights": { "message": "🔑 أبرز النقاط" },
+    "aiContextTypeCultural": { "message": "ثقافي" },
+    "aiContextTypeHistorical": { "message": "تاريخي" },
+    "aiContextTypeLinguistic": { "message": "لغوي" },
+    "aiContextTypeComprehensive": { "message": "شامل" },
+    "aiContextTypeGeneric": { "message": "سياق" },
+    "aiContextClose": { "message": "إغلاق" },
+    "aiContextAnalysisResults": { "message": "نتائج التحليل" },
+    "aiContextRetrying": { "message": "فشل التحليل، تتم إعادة الإنشاء..." },
+    "aiContextRetryNotification": { "message": "فشل التحليل، إعادة المحاولة..." },
+    "aiContextRetryButton": { "message": "حاول مرة أخرى" },
+    "aiContextMalformedResponse": {
+        "message": "أعاد مزود الذكاء الاصطناعي تنسيق استجابة غير صالح. قد يكون ذلك بسبب مشاكل مؤقتة في الخدمة."
+    },
+    "aiContextJsonCodeBlock": {
+        "message": "أعاد مزود الذكاء الاصطناعي كود JSON غير معالج بدلاً من بيانات مُهيكلة. يشير ذلك إلى خطأ في تنسيق الاستجابة."
+    },
+    "aiContextCulturalContext": { "message": "السياق الثقافي:" },
+    "aiContextSocialUsage": { "message": "الاستخدام الاجتماعي:" },
+    "aiContextRegionalNotes": { "message": "ملاحظات إقليمية:" },
+    "aiContextOrigins": { "message": "الأصول:" },
+    "aiContextHistoricalContext": { "message": "السياق التاريخي:" },
+    "aiContextHistoricalSignificance": {
+        "message": "الأهمية التاريخية:"
+    },
+    "aiContextEvolution": { "message": "التطور:" },
+    "aiContextEtymology": { "message": "الأصل اللغوي:" },
+    "aiContextGrammarNotes": { "message": "ملاحظات نحوية:" },
+    "aiContextTranslationNotes": { "message": "ملاحظات الترجمة:" },
+    "aiContextLinguisticAnalysis": { "message": "تحليل لغوي:" },
+    "aiContextGrammarSemantics": { "message": "النحو والدلالة:" },
+    "aiContextUsageExamples": { "message": "الاستخدام والأمثلة:" },
+    "aiContextLearningTips": { "message": "نصائح للتعلم:" },
+    "aiContextRelatedExpressions": { "message": "تعابير ذات صلة:" },
+    "aiContextKeyInsights": { "message": "أبرز النقاط:" }
 }
 
