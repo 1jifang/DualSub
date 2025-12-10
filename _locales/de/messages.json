@@ -451,6 +451,63 @@
     "cardGeminiContextTitle": { "message": "Google Gemini Konfiguration" },
     "cardGeminiContextDesc": {
         "message": "Konfigurieren Sie Ihre Google Gemini API-Einstellungen für die Kontextanalyse. Sie benötigen einen gültigen Gemini API-Schlüssel."
-    }
+    },
+    "geminiApiKeyLabel": { "message": "API-Schlüssel:" },
+    "geminiModelLabel": { "message": "Modell:" },
+    "cardAIContextTypesTitle": { "message": "Kontext-Typen" },
+    "cardAIContextTypesDesc": {
+        "message": "Aktivieren Sie die Arten der Kontextanalyse, die Sie verwenden möchten. Sie können mehrere Typen aktivieren."
+    },
+    "contextTypeCulturalLabel": { "message": "Kultureller Kontext:" },
+    "contextTypeCulturalHelp": {
+        "message": "Analysieren Sie kulturelle Referenzen, Redewendungen und sozialen Kontext"
+    },
+    "contextTypeHistoricalLabel": { "message": "Historischer Kontext:" },
+    "contextTypeHistoricalHelp": {
+        "message": "Bieten Sie historischen Hintergrund und Kontext zum Zeitraum"
+    },
+    "contextTypeLinguisticLabel": { "message": "Linguistische Analyse:" },
+    "contextTypeLinguisticHelp": {
+        "message": "Erklären Sie Grammatik, Etymologie und Sprachstruktur"
+    },
+
+    "cardAIContextPrivacyTitle": { "message": "Datenschutz & Daten" },
+    "cardAIContextPrivacyDesc": {
+        "message": "Steuern Sie, wie Ihre Daten während der Kontextanalyse behandelt werden."
+    },
+    "aiContextUserConsentLabel": {
+        "message": "Ich stimme zu, Untertiteltexte zur Analyse an KI-Anbieter zu senden:"
+    },
+    "aiContextUserConsentHelp": {
+        "message": "Erforderlich für die Funktion der AI-Kontextanalyse"
+    },
+    "aiContextDataSharingLabel": {
+        "message": "Anonyme Nutzungsanalysen zulassen:"
+    },
+    "aiContextDataSharingHelp": {
+        "message": "Helfen Sie mit, den Dienst zu verbessern, indem Sie anonyme Nutzungsdaten teilen"
+    },
+    "cardAIContextAdvancedTitle": { "message": "Erweiterte Einstellungen" },
+    "cardAIContextAdvancedDesc": {
+        "message": "Konfigurieren Sie erweiterte Optionen für das Verhalten der AI-Kontextanalyse."
+    },
+    "aiContextTimeoutLabel": { "message": "Anfrage-Timeout (ms):" },
+    "aiContextTimeoutHelp": {
+        "message": "Maximale Wartezeit auf KI-Antwort"
+    },
+    "aiContextRateLimitLabel": { "message": "Ratenbegrenzung (Anfragen/Min):" },
+    "aiContextRateLimitHelp": {
+        "message": "Maximale Anzahl von Anfragen pro Minute"
+    },
+    "aiContextCacheEnabledLabel": { "message": "Caching aktivieren:" },
+    "aiContextCacheEnabledHelp": {
+        "message": "Analyseergebnisse zwischenspeichern, um API-Aufrufe zu reduzieren"
+    },
+    "aiContextRetryAttemptsLabel": { "message": "Wiederholungsversuche:" },
+    "aiContextRetryAttemptsHelp": {
+        "message": "Anzahl der Wiederholungsversuche bei fehlgeschlagenen Anfragen"
+    },
+    "showAdvancedSettings": { "message": "Erweiterte Einstellungen anzeigen" },
+    "hideAdvancedSettings": { "message": "Erweiterte Einstellungen ausblenden" }
 }
     
