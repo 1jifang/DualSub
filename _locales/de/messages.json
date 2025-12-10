@@ -260,6 +260,90 @@
     "openaiTestingConnection": { "message": "Teste Verbindung..." },
     "openaiConnectionSuccessful": { "message": "Verbindung erfolgreich!" },
     "openaiConnectionFailed": { "message": "Verbindung fehlgeschlagen: %s" },
-    "openaieFetchingModels": { "message": "Rufe Modelle ab..." }
+    "openaieFetchingModels": { "message": "Rufe Modelle ab..." },
+    "openaiModelsFetchedSuccessfully": {
+        "message": "Modelle erfolgreich abgerufen."
+    },
+    "openaiFailedToFetchModels": { "message": "Fehler beim Abrufen der Modelle: %s" },
+
+    "cardLoggingLevelTitle": { "message": "Protokollierungsstufe" },
+    "cardLoggingLevelDesc": {
+        "message": "Steuern Sie die Menge der Debug-Informationen, die in der Browserkonsole angezeigt werden. Höhere Stufen beinhalten alle Nachrichten niedrigerer Stufen."
+    },
+    "loggingLevelLabel": { "message": "Protokollierungsstufe:" },
+    "loggingLevelOff": { "message": "Aus" },
+    "loggingLevelError": { "message": "Nur Fehler" },
+    "loggingLevelWarn": { "message": "Warnungen & Fehler" },
+    "loggingLevelInfo": { "message": "Info & höher" },
+    "loggingLevelDebug": { "message": "Debug (Alles)" },
+
+    "cardBatchTranslationTitle": { "message": "Batch-Übersetzung" },
+    "cardBatchTranslationDesc": {
+        "message": "Die Batch-Übersetzung verarbeitet mehrere Untertitel-Segmente zusammen, was API-Aufrufe um 80-90% reduziert und die Leistung verbessert. Konfigurieren Sie optimale Einstellungen für Ihren bevorzugten Übersetzungsanbieter."
+    },
+    "batchingEnabledLabel": { "message": "Batch-Übersetzung aktivieren:" },
+    "batchingEnabledHelp": {
+        "message": "Gruppiert mehrere Untertitel-Segmente in einzelne Übersetzungsanfragen"
+    },
+    "useProviderDefaultsLabel": {
+        "message": "Anbieter-optimierte Einstellungen verwenden:"
+    },
+    "useProviderDefaultsHelp": {
+        "message": "Verwendet automatisch optimale Batch-Größen für jeden Übersetzungsanbieter"
+    },
+    "globalBatchSizeLabel": { "message": "Globale Batch-Größe:" },
+    "globalBatchSizeHelp": {
+        "message": "Anzahl der gemeinsam zu verarbeitenden Untertitel-Segmente (1-15)"
+    },
+    "smartBatchingLabel": { "message": "Intelligente Batch-Optimierung:" },
+    "smartBatchingHelp": {
+        "message": "Priorisiert Untertitel-Segmente basierend auf der Wiedergabeposition"
+    },
+    "maxConcurrentBatchesLabel": { "message": "Maximale gleichzeitige Batches:" },
+    "maxConcurrentBatchesHelp": {
+        "message": "Anzahl der gleichzeitig zu verarbeitenden Übersetzungs-Batches"
+    },
+
+    "cardProviderBatchTitle": { "message": "Anbieterspezifische Batch-Größen" },
+    "cardProviderBatchDesc": {
+        "message": "Konfigurieren Sie optimale Batch-Größen für jeden Übersetzungsanbieter. Diese Einstellungen werden verwendet, wenn \"Anbieter-optimierte Einstellungen verwenden\" aktiviert ist."
+    },
+    "openaieBatchSizeLabel": { "message": "OpenAI Batch-Größe:" },
+    "openaieBatchSizeHelp": {
+        "message": "Empfohlen: 5-10 Segmente (Standard: 8)"
+    },
+    "googleBatchSizeLabel": { "message": "Google Translate Batch-Größe:" },
+    "googleBatchSizeHelp": {
+        "message": "Empfohlen: 3-5 Segmente (Standard: 4)"
+    },
+    "deeplBatchSizeLabel": { "message": "DeepL Batch-Größe:" },
+    "deeplBatchSizeHelp": {
+        "message": "Empfohlen: 2-3 Segmente (Standard: 3)"
+    },
+    "microsoftBatchSizeLabel": { "message": "Microsoft Translate Batch-Größe:" },
+    "microsoftBatchSizeHelp": {
+        "message": "Empfohlen: 3-5 Segmente (Standard: 4)"
+    },
+    "vertexBatchSizeLabel": { "message": "Vertex AI Batch-Größe:" },
+    "vertexBatchSizeHelp": {
+        "message": "Empfohlen: 5-10 Segmente (Standard: 8)"
+    },
+
+    "cardProviderDelayTitle": { "message": "Anbieterspezifische Anfrageverzögerungen" },
+    "cardProviderDelayDesc": {
+        "message": "Konfigurieren Sie zwingende Verzögerungen zwischen Übersetzungsanfragen, um Kontosperren zu vermeiden. Diese Verzögerungen werden auch angewendet, wenn die Batch-Verarbeitung aktiviert ist."
+    },
+    "openaieDelayLabel": { "message": "OpenAI Anfrageverzögerung (ms):" },
+    "openaieDelayHelp": {
+        "message": "Mindestverzögerung zwischen Anfragen (Standard: 100ms)"
+    },
+    "googleDelayLabel": { "message": "Google Translate Anfrageverzögerung (ms):" },
+    "googleDelayHelp": {
+        "message": "Erforderliche Verzögerung, um temporäre Sperren zu vermeiden (Standard: 1500ms)"
+    },
+    "deeplDelayLabel": { "message": "DeepL API Anfrageverzögerung (ms):" },
+    "deeplDelayHelp": {
+        "message": "Verzögerung für DeepL API-Anfragen (Standard: 500ms)"
+    }
 }
     
