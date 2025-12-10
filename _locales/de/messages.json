@@ -1,0 +1,89 @@
+{
+    "appName": { "message": "DualSub" },
+    "appDesc": {
+        "message": "Zeigt zweisprachige Untertitel auf Streaming-Plattformen an."
+    },
+    "pageTitle": { "message": "DualSub Einstellungen" },
+    "h1Title": { "message": "DualSub" },
+    "enableSubtitlesLabel": { "message": "Duale Untertitel aktivieren:" },
+    "useNativeSubtitlesLabel": { "message": "Offizielle Untertitel verwenden:" },
+    "originalLanguageLabel": { "message": "Sprache eingestellt:" },
+    "translationSettingsLegend": { "message": "Übersetzungseinstellungen" },
+    "providerLabel": { "message": "Anbieter:" },
+    "targetLanguageLabel": { "message": "Übersetzen nach:" },
+    "batchSizeLabel": { "message": "Batch-Größe:" },
+    "requestDelayLabel": { "message": "Anfrageverzögerung (ms):" },
+    "subtitleAppearanceTimingLegend": {
+        "message": "Erscheinungsbild & Timing der Untertitel"
+    },
+    "displayOrderLabel": { "message": "Anzeigereihenfolge:" },
+    "layoutLabel": { "message": "Layout:" },
+    "fontSizeLabel": { "message": "Schriftgröße:" },
+    "verticalGapLabel": { "message": "Vertikaler Abstand:" },
+    "subtitleVerticalPositionLabel": { "message": "Vertikale Position:" },
+    "timeOffsetLabel": { "message": "Zeitversatz (s):" },
+    "displayOrderOriginalFirst": { "message": "Original zuerst" },
+    "displayOrderTranslationFirst": { "message": "Übersetzung zuerst" },
+    "layoutTopBottom": { "message": "Oben / Unten" },
+    "layoutLeftRight": { "message": "Links / Rechts" },
+    "uiLanguageLabel": { "message": "Sprache:" },
+    "openOptionsButton": { "message": "Erweiterte Einstellungen" },
+    "statusLanguageSetTo": { "message": "Sprache eingestellt (Seite aktualisieren): " },
+    "statusDualEnabled": {
+        "message": "Duale Untertitel aktiviert. (Seite aktualisieren)"
+    },
+    "statusDualDisabled": {
+        "message": "Duale Untertitel deaktiviert. (Seite aktualisieren)"
+    },
+    "statusSmartTranslationEnabled": {
+        "message": "Intelligente Übersetzung aktiviert. (Seite aktualisieren)"
+    },
+    "statusSmartTranslationDisabled": {
+        "message": "Intelligente Übersetzung deaktiviert. (Seite aktualisieren)"
+    },
+    "statusOriginalLanguage": { "message": "Sprache eingestellt (Seite aktualisieren): " },
+    "statusTimeOffset": { "message": "Zeitversatz: " },
+    "statusDisplayOrderUpdated": { "message": "Anzeigereihenfolge aktualisiert." },
+    "statusLayoutOrientationUpdated": {
+        "message": "Layout-Ausrichtung aktualisiert."
+    },
+    "statusFontSize": { "message": "Schriftgröße: " },
+    "statusVerticalGap": { "message": "Vertikaler Abstand: " },
+    "statusVerticalPosition": { "message": "Vertikale Position: " },
+    "statusInvalidOffset": { "message": "Ungültiger Versatz, wird zurückgesetzt." },
+    "statusSettingNotApplied": {
+        "message": "Einstellung nicht angewendet. Seite aktualisieren."
+    },
+
+    "optionsPageTitle": { "message": "DualSub Optionen" },
+    "optionsH1Title": { "message": "DualSub" },
+    "navGeneral": { "message": "Allgemein" },
+    "navTranslation": { "message": "Übersetzung" },
+    "navProviders": { "message": "Anbieter" },
+    "navAbout": { "message": "Über" },
+    "sectionGeneral": { "message": "Allgemein" },
+    "cardUILanguageTitle": { "message": "UI-Sprache" },
+    "cardUILanguageDesc": {
+        "message": "Wählen Sie die Anzeigesprache für die Benutzeroberfläche der Erweiterung."
+    },
+    "cardHideOfficialSubtitlesTitle": { "message": "Offizielle Untertitel ausblenden" },
+    "cardHideOfficialSubtitlesDesc": {
+        "message": "Offizielle Untertitel der Video-Plattform ausblenden, wenn DualSub aktiv ist."
+    },
+    "hideOfficialSubtitlesLabel": { "message": "Offizielle Untertitel ausblenden:" },
+    "sectionTranslation": { "message": "Übersetzung" },
+    "cardTranslationEngineTitle": { "message": "Übersetzungs-Engine" },
+    "cardTranslationEngineDesc": {
+        "message": "Wählen Sie Ihren bevorzugten Übersetzungsdienst."
+    },
+    "cardPerformanceTitle": { "message": "Leistung" },
+    "cardPerformanceDesc": {
+        "message": "Passen Sie an, wie die Erweiterung Übersetzungsanfragen behandelt, um Geschwindigkeit und Stabilität auszugleichen."
+    },
+    "sectionProviders": { "message": "Anbieter-Einstellungen" },
+    "cardDeepLTitle": { "message": "DeepL" },
+    "cardDeepLDesc": {
+        "message": "Geben Sie Ihren API-Schlüssel für DeepL Translate ein. Wählen Sie zwischen Free und Pro Plänen."
+    }
+}
+    
