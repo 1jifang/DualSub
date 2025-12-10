@@ -344,6 +344,71 @@
     "deeplDelayLabel": { "message": "DeepL API Anfrageverzögerung (ms):" },
     "deeplDelayHelp": {
         "message": "Verzögerung für DeepL API-Anfragen (Standard: 500ms)"
+    },
+    "deeplFreeDelayLabel": { "message": "DeepL Free Anfrageverzögerung (ms):" },
+    "deeplFreeDelayHelp": {
+        "message": "Konservative Verzögerung für kostenlose Stufe (Standard: 2000ms)"
+    },
+    "microsoftDelayLabel": {
+        "message": "Microsoft Translate Anfrageverzögerung (ms):"
+    },
+    "microsoftDelayHelp": {
+        "message": "Verzögerung zur Einhaltung von Zeichenlimits (Standard: 800ms)"
+    },
+    "vertexDelayLabel": {
+        "message": "Vertex AI Anfrageverzögerung (ms):"
+    },
+    "vertexDelayHelp": {
+        "message": "Mindestverzögerung zwischen Anfragen (Standard: 100ms)"
+    },
+
+    "aiContextModalTitle": { "message": "AI-Kontextanalyse" },
+    "aiContextSelectedWords": { "message": "Ausgewählte Wörter" },
+    "aiContextNoWordsSelected": { "message": "Keine Wörter ausgewählt" },
+    "aiContextClickHint": { "message": "💡 Klicken Sie auf ein Wort, um es hinzuzufügen oder zu entfernen." },
+    "aiContextStartAnalysis": { "message": "Analyse starten" },
+    "aiContextPauseAnalysis": { "message": "⏸ Pause" },
+    "aiContextPauseAnalysisTitle": { "message": "Analyse pausieren" },
+    "aiContextInitialMessage": {
+        "message": "Wählen Sie Wörter aus den Untertiteln, um die Analyse zu beginnen."
+    },
+    "aiContextAnalyzing": { "message": "Analysiere Kontext..." },
+    "aiContextPauseNote": { "message": "Klicken Sie ⏸, um die Analyse zu pausieren" },
+    "aiContextAnalysisFailed": { "message": "Analyse fehlgeschlagen" },
+    "aiContextNoContent": { "message": "Kein Analyseinhalt" },
+    "aiContextNoContentMessage": {
+        "message": "Analyse abgeschlossen, aber kein Inhalt zurückgegeben."
+    },
+    "aiContextDefinition": { "message": "📖 Definition" },
+    "aiContextCultural": { "message": "🌍 Kultureller Kontext" },
+    "aiContextCulturalSignificance": { "message": "⭐ Kulturelle Bedeutung" },
+    "aiContextHistorical": { "message": "📜 Historischer Kontext" },
+    "aiContextHistoricalSignificance": {
+        "message": "📜 Historische Bedeutung"
+    },
+    "aiContextEvolution": { "message": "🔄 Entwicklung im Laufe der Zeit" },
+    "aiContextLinguistic": { "message": "🔤 Linguistische Analyse" },
+    "aiContextGrammar": { "message": "📝 Grammatik & Semantik" },
+    "aiContextUsage": { "message": "💡 Verwendung & Beispiele" },
+    "aiContextExamples": { "message": "Beispiele:" },
+    "aiContextLearningTips": { "message": "🎯 Lerntipps" },
+    "aiContextRelatedExpressions": { "message": "🔗 Verwandte Ausdrücke" },
+    "aiContextKeyInsights": { "message": "🔑 Wichtige Erkenntnisse" },
+    "aiContextTypeCultural": { "message": "Kulturell" },
+    "aiContextTypeHistorical": { "message": "Historisch" },
+    "aiContextTypeLinguistic": { "message": "Linguistisch" },
+    "aiContextTypeComprehensive": { "message": "Umfassend" },
+    "aiContextTypeGeneric": { "message": "Kontext" },
+    "aiContextClose": { "message": "Schließen" },
+    "aiContextAnalysisResults": { "message": "Analyseergebnisse" },
+    "aiContextRetrying": { "message": "Analyse fehlgeschlagen, wird neu generiert..." },
+    "aiContextRetryNotification": { "message": "Analyse fehlgeschlagen, neuer Versuch..." },
+    "aiContextRetryButton": { "message": "Erneut versuchen" },
+    "aiContextMalformedResponse": {
+        "message": "Der KI-Dienst hat ein ungültiges Antwortformat zurückgegeben. Dies kann auf vorübergehende Dienstprobleme zurückzuführen sein."
+    },
+    "aiContextJsonCodeBlock": {
+        "message": "Der KI-Dienst hat unbearbeiteten JSON-Code anstelle von strukturierten Daten zurückgegeben. Dies deutet auf einen Formatierungsfehler in der Antwort hin."
     }
 }
     
