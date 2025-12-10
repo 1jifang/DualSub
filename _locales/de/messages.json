@@ -84,6 +84,103 @@
     "cardDeepLTitle": { "message": "DeepL" },
     "cardDeepLDesc": {
         "message": "Geben Sie Ihren API-Schlüssel für DeepL Translate ein. Wählen Sie zwischen Free und Pro Plänen."
+    },
+    "apiPlanLabel": { "message": "API-Plan:" },
+    "apiPlanFree": { "message": "DeepL API Free" },
+    "apiPlanPro": { "message": "DeepL API Pro" },
+    "sectionAbout": { "message": "Über" },
+    "cardAboutTitle": { "message": "DualSub" },
+    "aboutVersion": { "message": "Version" },
+    "aboutDescription": {
+        "message": "Diese Erweiterung hilft Ihnen, Videos mit zweisprachigen Untertiteln auf verschiedenen Plattformen anzusehen."
+    },
+    "aboutDevelopment": { "message": "Entwickelt von QuellaMC & 1jifang." },
+
+    "lang_en": { "message": "Englisch" },
+    "lang_es": { "message": "Spanisch" },
+    "lang_fr": { "message": "Französisch" },
+    "lang_de": { "message": "Deutsch" },
+    "lang_it": { "message": "Italienisch" },
+    "lang_pt": { "message": "Portugiesisch" },
+    "lang_ja": { "message": "Japanisch" },
+    "lang_ko": { "message": "Koreanisch" },
+    "lang_zh_CN": { "message": "Chinesisch (Ver.)" },
+    "lang_zh_TW": { "message": "Chinesisch (Trad.)" },
+    "lang_ru": { "message": "Russisch" },
+    "lang_ar": { "message": "Arabisch" },
+    "lang_hi": { "message": "Hindi" },
+
+    "testDeepLButton": { "message": "DeepL-Verbindung testen" },
+    "deeplApiKeyError": { "message": "Bitte geben Sie zuerst Ihren DeepL API-Schlüssel ein." },
+    "deeplTestNeedsTesting": { "message": "⚠️ DeepL API-Schlüssel muss getestet werden." },
+    "testingButton": { "message": "Testen..." },
+    "testingConnection": { "message": "Teste DeepL-Verbindung..." },
+    "deeplTestSuccess": {
+        "message": "✅ DeepL API-Test erfolgreich!"
+    },
+    "deeplTestUnexpectedFormat": {
+        "message": "⚠️ DeepL API antwortete, aber mit unerwartetem Format"
+    },
+    "deeplTestInvalidKey": {
+        "message": "❌ DeepL API-Schlüssel ist ungültig oder wurde abgelehnt."
+    },
+    "deeplTestQuotaExceeded": {
+        "message": "❌ DeepL API-Kontingent überschritten. Bitte überprüfen Sie Ihre Nutzungsgrenzen."
+    },
+    "deeplTestApiError": { "message": "❌ DeepL API-Fehler (%d): %s" },
+    "deeplTestNetworkError": {
+        "message": "❌ Netzwerkfehler: Konnte keine Verbindung zur DeepL API herstellen. Überprüfen Sie Ihre Internetverbindung."
+    },
+    "deeplTestGenericError": { "message": "❌ Test fehlgeschlagen: %s" },
+    "deepLApiUnavailable": { "message": "DeepL API nicht verfügbar" },
+    "deepLApiUnavailableTooltip": {
+        "message": "DeepL API-Skript konnte nicht geladen werden"
+    },
+    "deeplApiNotLoadedError": {
+        "message": "❌ DeepL API-Skript ist nicht verfügbar. Bitte aktualisieren Sie die Seite."
+    },
+    "cardGoogleTitle": { "message": "Google Übersetzer" },
+    "cardGoogleDesc": {
+        "message": "Kostenloser Übersetzungsdienst von Google. Keine zusätzliche Konfiguration erforderlich."
+    },
+    "cardMicrosoftTitle": { "message": "Microsoft Übersetzer" },
+    "cardMicrosoftDesc": {
+        "message": "Kostenloser Übersetzungsdienst von Microsoft Edge. Keine zusätzliche Konfiguration erforderlich."
+    },
+    "cardDeepLFreeTitle": { "message": "DeepL Translate (Free)" },
+    "cardDeepLFreeDesc": {
+        "message": "Kostenloser DeepL-Übersetzungsdienst mit hochwertigen Ergebnissen. Kein API-Schlüssel erforderlich - nutzt die DeepL-Weboberfläche."
+    },
+    "providerStatus": { "message": "Status:" },
+    "statusReady": { "message": "Bereit zur Verwendung" },
+    "providerFeatures": { "message": "Funktionen:" },
+    "featureFree": { "message": "Kostenlos" },
+    "featureNoApiKey": { "message": "Kein API-Schlüssel erforderlich" },
+    "featureWideLanguageSupport": { "message": "Breite Sprachunterstützung" },
+    "featureFastTranslation": { "message": "Schnelle Übersetzung" },
+    "featureHighQuality": { "message": "Hohe Qualität" },
+    "featureGoodPerformance": { "message": "Gute Leistung" },
+    "featureHighestQuality": { "message": "Höchste Qualität" },
+    "featureApiKeyRequired": { "message": "API-Schlüssel erforderlich" },
+    "featureLimitedLanguages": { "message": "Begrenzte Sprachunterstützung" },
+    "featureUsageLimits": { "message": "Nutzungsgrenzen gelten" },
+    "featureMultipleBackups": { "message": "Mehrere Backup-Methoden" },
+
+    "providerNotes": { "message": "Hinweise:" },
+    "noteSlowForSecurity": {
+        "message": "Etwas langsamer aufgrund von Sicherheitsmaßnahmen"
+    },
+    "noteAutoFallback": {
+        "message": "Automatischer Rückfall auf alternative Dienste"
+    },
+    "noteRecommendedDefault": { "message": "Empfohlen als Standardanbieter" },
+
+    "providerGoogleName": { "message": "Google Übersetzer (Kostenlos)" },
+    "providerMicrosoftName": { "message": "Microsoft Übersetzer (Kostenlos)" },
+    "providerDeepLName": { "message": "DeepL (API-Schlüssel erforderlich)" },
+    "providerDeepLFreeName": { "message": "DeepL Translate (Kostenlos)" },
+    "providerOpenAICompatibleName": {
+        "message": "OpenAI Kompatibel (API-Schlüssel erforderlich)"
     }
 }
     
