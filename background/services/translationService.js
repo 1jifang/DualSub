@@ -304,7 +304,13 @@ class TranslationService {
             }
 
             // Apply mandatory delay before translation
-            await this.applyMandatoryDelay();
+            if (!options.skipMandatoryDelay) {
+                await this.applyMandatoryDelay();
+            } else {
+                this.logger.debug('Skipping mandatory delay (urgent request)', {
+                    provider: this.currentProviderId,
+                });
+            }
 
             const selectedProvider = this.providers[this.currentProviderId];
             if (!selectedProvider?.translate) {

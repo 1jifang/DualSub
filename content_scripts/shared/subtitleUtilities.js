@@ -49,6 +49,124 @@ function debugSWLog(level, tag, data = {}) {
     } catch (_) {}
 }
 
+// Urgent path: translate the currently visible cue (or very next one) immediately after seek
+async function translateVisibleCueUrgently(activePlatform, config, logPrefix = 'SubtitleUtils') {
+    const now = Date.now();
+    const throttleMs = Math.max(600, Number(config.urgentThrottleMs) || 1200);
+    if (now - lastUrgentTranslateTs < throttleMs) {
+        return;
+    }
+    const videoElement = activePlatform?.getVideoElement?.();
+    const videoId = activePlatform?.getCurrentVideoId?.();
+    if (!videoElement || !videoId) return;
+
+    const currentTime = (videoElement.currentTime || 0) + (config.subtitleTimeOffset || 0);
+    let candidate = null;
+    for (const cue of subtitleQueue) {
+        if (
+            cue.videoId === videoId &&
+            cue.original &&
+            !cue.useNativeTarget &&
+            !cue.translated &&
+            currentTime >= cue.start &&
+            currentTime <= cue.end
+        ) {
+            candidate = cue;
+            break;
+        }
+    }
+    if (!candidate) {
+        // fallback: pick next cue within 5s
+        let minDiff = Infinity;
+        for (const cue of subtitleQueue) {
+            if (
+                cue.videoId === videoId &&
+                cue.original &&
+                !cue.useNativeTarget &&
+                !cue.translated
+            ) {
+                const diff = cue.start - currentTime;
+                if (diff >= 0 && diff <= 5 && diff < minDiff) {
+                    minDiff = diff;
+                    candidate = cue;
+                }
+            }
+        }
+    }
+    if (!candidate) return;
+
+    // check cache first
+    const cached = getCachedTranslation(
+        candidate.videoId,
+        candidate.start,
+        config.targetLanguage,
+        candidate.original
+    );
+    if (typeof cached === 'string' && cached.length > 0) {
+        candidate.translated = cached;
+        logWithFallback('info', 'Urgent path used cached translation', {
+            logPrefix,
+            start: candidate.start,
+        });
+        debugSWLog('info', 'UrgentCacheHit', { start: candidate.start });
+        return;
+    }
+
+    lastUrgentTranslateTs = now;
+    logWithFallback('info', 'Urgent translation start', {
+        logPrefix,
+        start: candidate.start,
+    });
+    debugSWLog('info', 'UrgentStart', { start: candidate.start });
+
+    try {
+        const res = await new Promise((resolve, reject) => {
+            chrome.runtime.sendMessage(
+                {
+                    action: 'translate',
+                    text: candidate.original,
+                    targetLang: config.targetLanguage,
+                    cueStart: candidate.start,
+                    cueVideoId: candidate.videoId,
+                    urgent: true,
+                    skipMandatoryDelay: true,
+                },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        reject(new Error(chrome.runtime.lastError.message));
+                    } else if (response?.error) {
+                        reject(new Error(response.error));
+                    } else {
+                        resolve(response);
+                    }
+                }
+            );
+        });
+        if (res?.translatedText) {
+            candidate.translated = res.translatedText;
+            setCachedTranslation(
+                candidate.videoId,
+                candidate.start,
+                config.targetLanguage,
+                candidate.original,
+                res.translatedText
+            );
+            logWithFallback('info', 'Urgent translation done', {
+                logPrefix,
+                start: candidate.start,
+            });
+            debugSWLog('info', 'UrgentEnd', { start: candidate.start });
+        }
+    } catch (e) {
+        logWithFallback('warn', 'Urgent translation failed', {
+            logPrefix,
+            start: candidate.start,
+            message: e?.message,
+        });
+        debugSWLog('warn', 'UrgentError', { start: candidate.start, message: e?.message });
+    }
+}
+
 /**
  * Phase 2: Compute a normalized text signature to detect effective content changes
  * - Strips HTML
@@ -432,20 +550,6 @@ function getCachedTranslation(videoId, cueStart, targetLang, originalText) {
         originalText
     );
     const hit = translationCache.get(key);
-    debugSWLog('info', 'CacheLookup', {
-        videoId,
-        cueStart,
-        targetLang,
-        providerId: currentProviderIdForCache,
-        hit: typeof hit === 'string',
-    });
-    logWithFallback('info', 'Cache lookup', {
-        videoId,
-        cueStart,
-        targetLang,
-        providerId: currentProviderIdForCache,
-        hit: typeof hit === 'string',
-    });
     return hit;
 }
 
@@ -458,20 +562,6 @@ function setCachedTranslation(videoId, cueStart, targetLang, originalText, trans
         originalText
     );
     translationCache.set(key, translatedText);
-    debugSWLog('info', 'CacheSet', {
-        videoId,
-        cueStart,
-        targetLang,
-        providerId: currentProviderIdForCache,
-        length: (translatedText || '').length,
-    });
-    logWithFallback('info', 'Cache set', {
-        videoId,
-        cueStart,
-        targetLang,
-        providerId: currentProviderIdForCache,
-        length: (translatedText || '').length,
-    });
 }
 
 // Guard against transient blanks during style changes and platform ID timing
@@ -491,6 +581,7 @@ export const { MAX_FIND_PROGRESS_BAR_RETRIES } = COMMON_CONSTANTS;
 export let lastLoggedTimeSec = -1;
 export let timeUpdateLogCounter = 0;
 export const TIME_UPDATE_LOG_INTERVAL = 30;
+let lastUrgentTranslateTs = 0;
 
 // Navigation guarding to prevent stale subtitles during soft navigations
 let lastKnownLocationHref =
@@ -1127,6 +1218,8 @@ export function attachTimeUpdateListener(
                 debugSWLog('info', 'Seek', { time: t, schedulingVersion });
                 // Trigger quick re-processing based on new time
                 processSubtitleQueue(activePlatform, config, logPrefix);
+                // Also trigger an urgent translate for the currently visible (or next) cue
+                translateVisibleCueUrgently(activePlatform, config, logPrefix);
             }
         } catch (_) {}
         };
