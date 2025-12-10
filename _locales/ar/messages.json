@@ -84,6 +84,96 @@
     "cardDeepLTitle": { "message": "DeepL" },
     "cardDeepLDesc": {
         "message": "أدخل مفتاح API لخدمة DeepL. اختر بين خُطة Free أو Pro."
-    }
+    },
+    "apiKeyLabel": { "message": "مفتاح API:" },
+    "apiPlanLabel": { "message": "خطة API:" },
+    "apiPlanFree": { "message": "DeepL API Free" },
+    "apiPlanPro": { "message": "DeepL API Pro" },
+    "sectionAbout": { "message": "حول" },
+    "cardAboutTitle": { "message": "DualSub" },
+    "aboutVersion": { "message": "الإصدار" },
+    "aboutDescription": {
+        "message": "تساعدك هذه الإضافة على مشاهدة الفيديوهات بترجمات بلغتين على منصات متعددة."
+    },
+    "aboutDevelopment": { "message": "طوّره QuellaMC و 1jifang." },
+
+    "lang_en": { "message": "الإنجليزية" },
+    "lang_es": { "message": "الإسبانية" },
+    "lang_fr": { "message": "الفرنسية" },
+    "lang_de": { "message": "الألمانية" },
+    "lang_it": { "message": "الإيطالية" },
+    "lang_pt": { "message": "البرتغالية" },
+    "lang_ja": { "message": "اليابانية" },
+    "lang_ko": { "message": "الكورية" },
+    "lang_zh_CN": { "message": "الصينية (مبسطة)" },
+    "lang_zh_TW": { "message": "الصينية (تقليدية)" },
+    "lang_ru": { "message": "الروسية" },
+    "lang_ar": { "message": "العربية" },
+    "lang_hi": { "message": "الهندية" },
+
+    "testDeepLButton": { "message": "اختبار اتصال DeepL" },
+    "deeplApiKeyError": { "message": "يرجى إدخال مفتاح واجهة DeepL أولاً." },
+    "deeplTestNeedsTesting": { "message": "⚠️ يحتاج مفتاح واجهة DeepL إلى الاختبار." },
+    "testingButton": { "message": "جارٍ الاختبار..." },
+    "testingConnection": { "message": "جارٍ اختبار اتصال DeepL..." },
+    "deeplTestSuccess": {
+        "message": "✅ نجح اختبار واجهة DeepL!"
+    },
+    "deeplTestUnexpectedFormat": {
+        "message": "⚠️ استجابت واجهة DeepL لكن بتنسيق غير متوقع"
+    },
+    "deeplTestInvalidKey": {
+        "message": "❌ مفتاح واجهة DeepL غير صالح أو تم رفضه."
+    },
+    "deeplTestQuotaExceeded": {
+        "message": "❌ تم تجاوز حصة واجهة DeepL. يرجى التحقق من حدود الاستخدام."
+    },
+    "deeplTestApiError": { "message": "❌ خطأ في واجهة DeepL (%d): %s" },
+    "deeplTestNetworkError": {
+        "message": "❌ خطأ في الشبكة: تعذر الاتصال بواجهة DeepL. تحقّق من اتصال الإنترنت."
+    },
+    "deeplTestGenericError": { "message": "❌ فشل الاختبار: %s" },
+    "deepLApiUnavailable": { "message": "واجهة DeepL غير متاحة" },
+    "deepLApiUnavailableTooltip": {
+        "message": "فشل تحميل برنامج واجهة DeepL"
+    },
+    "deeplApiNotLoadedError": {
+        "message": "❌ برنامج واجهة DeepL غير متاح. يرجى تحديث الصفحة."
+    },
+    "cardGoogleTitle": { "message": "Google ترجمة" },
+    "cardGoogleDesc": {
+        "message": "خدمة ترجمة مجانية مقدّمة من Google. لا يلزم إعداد إضافي."
+    },
+    "cardMicrosoftTitle": { "message": "Microsoft ترجمة" },
+    "cardMicrosoftDesc": {
+        "message": "خدمة ترجمة مجانية مقدّمة من Microsoft Edge. لا يلزم إعداد إضافي."
+    },
+    "cardDeepLFreeTitle": { "message": "DeepL ترجمة (مجاني)" },
+    "cardDeepLFreeDesc": {
+        "message": "خدمة ترجمة DeepL المجانية بجودة عالية. لا حاجة لمفتاح API — تستخدم واجهة DeepL على الويب."
+    },
+    "providerStatus": { "message": "الحالة:" },
+    "statusReady": { "message": "جاهز للاستخدام" },
+    "providerFeatures": { "message": "الميزات:" },
+    "featureFree": { "message": "مجاني الاستخدام" },
+    "featureNoApiKey": { "message": "لا يتطلب مفتاح API" },
+    "featureWideLanguageSupport": { "message": "دعم واسع للغات" },
+    "featureFastTranslation": { "message": "ترجمة سريعة" },
+    "featureHighQuality": { "message": "ترجمة عالية الجودة" },
+    "featureGoodPerformance": { "message": "أداء جيد" },
+    "featureHighestQuality": { "message": "أعلى جودة للترجمة" },
+    "featureApiKeyRequired": { "message": "مطلوب مفتاح API" },
+    "featureLimitedLanguages": { "message": "دعم لغات محدود" },
+    "featureUsageLimits": { "message": "تنطبق حدود الاستخدام" },
+    "featureMultipleBackups": { "message": "عدة طرق احتياطية" },
+
+    "providerNotes": { "message": "ملاحظات:" },
+    "noteSlowForSecurity": {
+        "message": "أبطأ قليلاً بسبب إجراءات الأمان"
+    },
+    "noteAutoFallback": {
+        "message": "الرجوع التلقائي إلى خدمات بديلة"
+    },
+    "noteRecommendedDefault": { "message": "موصى به كمزوّد افتراضي" }
 }
 
