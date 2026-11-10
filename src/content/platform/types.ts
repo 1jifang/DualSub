@@ -2,8 +2,7 @@ import type { CapturedEvent, IsolatedToMain } from '../bridge/protocol';
 import type { Logger } from '@/shared/logger';
 import type { SettingsValues } from '@/config/schema';
 import type { SubtitleLook } from '../renderer/looks';
-
-export type PlatformId = 'netflix' | 'disneyplus';
+import type { PlatformId } from '@/shared/platforms';
 
 /** Fixed per-platform behavior flags — data, not overridable escape hatches. */
 export interface PlatformCapabilities {
@@ -19,7 +18,8 @@ export type BridgeEventClassification =
     | { kind: 'subtitle'; videoId: string }
     | { kind: 'platform'; videoId: string | null }
     /** The viewer's subtitle appearance: document-wide, not per video. */
-    | { kind: 'appearance'; appearance: Record<string, unknown> };
+    | { kind: 'appearance'; appearance: Record<string, unknown> }
+    | { kind: 'spoken-language'; videoId: string; language: string | null };
 
 export interface BridgeControlSender {
     readonly connected: boolean;
@@ -30,8 +30,10 @@ export type ConfigReader = {
     get<K extends keyof SettingsValues>(key: K): Promise<SettingsValues[K]>;
 };
 
-/** The session's subtitle language choices. A change reloads subtitles in
- *  place: the current cues stay on screen until the new set arrives. */
+/** The session's subtitle languages, all concrete: an automatic original line is
+ *  already resolved to the language spoken in the video. A change reloads
+ *  subtitles in place: the current cues stay on screen until the new set
+ *  arrives. */
 export interface SubtitleLanguages {
     readonly originalLanguage: string;
     readonly targetLanguage: string;
@@ -41,8 +43,9 @@ export interface SubtitleLanguages {
 export interface AdapterContext {
     readonly signal: AbortSignal;
     readonly videoId: string;
-    /** The session's current languages; read at use, never cached. */
-    readonly languages: () => SubtitleLanguages;
+    /** The session's current languages, read at use and never cached; null
+     *  while the language spoken in the video is still unknown. */
+    readonly languages: () => SubtitleLanguages | null;
     readonly bridge: BridgeControlSender;
     readonly config: ConfigReader;
     readonly logger: Logger;
