@@ -4,6 +4,26 @@ All notable changes to DualSub are recorded here. The format follows [Keep a Cha
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-11-13
+
+### Changed
+
+- Subtitles look like the site's own by default: on Netflix and Disney+ as your profile's subtitle settings say, and on YouTube in its default caption style. This applies to new installs and after Start over in Advanced; settings you already have keep their look. In Style, the Look row now opens with a plain switch, Site or Custom, and the ready-made looks sit under Custom.
+
+### Fixed
+
+- On YouTube, DualSub asks for the captions as soon as the player lists them, and waits for the player to sign them only where YouTube marks its caption addresses as needing that. Before, it always waited, so where an ad blocker stopped the check that signs them, the subtitles never came.
+
+## [3.4.0] - 2026-11-12
+
+### Added
+
+- Dual subtitles on YouTube, on watch pages and Shorts at www.youtube.com, with YouTube's own captions left off. Automatic captions show and are translated as whole lines, the way YouTube rolls them up, instead of in word-by-word pieces, which also halves the translation requests they need. When "Use the show's own translation" is on, captions a person wrote in your language serve as the translation. After this update, Chrome asks you to approve DualSub's access to www.youtube.com before it runs again, and the privacy policy says the captions come from there without cookies.
+
+### Changed
+
+- Text that named every site DualSub works on no longer does, so it stays short as sites are added. The description and the welcome page speak of video sites and the videos you watch, the side panel points to the buttons for each site, and Start says DualSub is working on every site, or names the sites where it is off. On a page DualSub doesn't work on, the popup has one See the sites button, which opens the Sites section of the settings page, instead of a button per site, so it needs no scrolling.
+
 ## [3.3.1] - 2026-11-09
 
 ### Fixed
@@ -206,7 +226,9 @@ All notable changes to DualSub are recorded here. The format follows [Keep a Cha
 
 Versions not listed here, including those before 1.4.0, are on [GitHub Releases](https://github.com/QuellaMC/DualSub/releases).
 
-[Unreleased]: https://github.com/QuellaMC/DualSub/compare/v3.3.1...HEAD
+[Unreleased]: https://github.com/QuellaMC/DualSub/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/QuellaMC/DualSub/compare/v3.4.0...v3.5.0
+[3.4.0]: https://github.com/QuellaMC/DualSub/compare/v3.3.1...v3.4.0
 [3.3.1]: https://github.com/QuellaMC/DualSub/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/QuellaMC/DualSub/compare/v3.2.1...v3.3.0
 [3.2.1]: https://github.com/QuellaMC/DualSub/compare/v3.2.0...v3.2.1
